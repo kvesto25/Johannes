@@ -10,7 +10,7 @@ $block_1 = $fields['block_1'];
 $block_2 = $fields['block_2'];
 $block_3 = $fields['block_3'];
 $block_4 = $fields['block_4'];
-
+;
 ?>
     <section class="main-section">
         <div class="container container--big container--nopaddings">
