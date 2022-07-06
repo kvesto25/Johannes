@@ -3,6 +3,7 @@ const app = new Vue({
 	el: '#app',
 	data: {
 		team: [],
+		meetTeamIsLoad: true,
 	},
 	created() {
 		this.team = [
@@ -70,8 +71,8 @@ const app = new Vue({
 				isHaveMoreInfo: false,
 				personMoreInfo: {},
 			},
-		]
+		];
 	},
 	computed: {},
 	methods: {},
-})
+});
