@@ -12,7 +12,6 @@ $block_3 = $fields['block_3'];
 $block_4 = $fields['block_4'];
 
 ?>
-<h1>Taras Lavrin</h1>
     <section class="main-section">
         <div class="container container--big container--nopaddings">
             <div class="main-section__wrapper">
