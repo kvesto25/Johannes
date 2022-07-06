@@ -40,6 +40,7 @@ function get_languages_callback(){
 
     for($i = 0; $i < 10; $i++){
         $temp_array = array(
+            "id" => ($i+1),
             "title" => "title " . ($i+1),
             "image_url" => $image[rand(0,2)],
             "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
