@@ -26,3 +26,28 @@ function get_menu_items($name) {
     }
     return $out;
 }
+
+add_action('wp_ajax_get_languages', 'get_languages_callback');
+add_action('wp_ajax_nopriv_get_languages', 'get_languages_callback');
+function get_languages_callback(){
+    $return_data = array();
+
+    $image = array(
+        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-azerbaijan.png",
+        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-china.png",
+        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-cyprus.png"
+    );
+
+    for($i = 0; $i < 10; $i++){
+        $temp_array = array(
+            "title" => "title " . ($i+1),
+            "image_url" => $image[rand(0,2)],
+            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
+            "small_description" => "Azerbaijani is spoken all over the world and is widely seen as the mother tongue of the Islamic world.title " . ($i+1)
+        );
+        array_push($return_data, $temp_array);
+    }
+
+
+    die(html_entity_decode(json_encode($return_data)));
+}
