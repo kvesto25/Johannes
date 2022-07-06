@@ -23,10 +23,13 @@
 define( 'DB_NAME', 'dev-plugin' );
 
 /** MySQL database username */
-define( 'DB_USER', 'root' );
+define( 'DB_NAME', 'u788776651_johannes' );
+
+/** MySQL database username */
+define( 'DB_USER', 'u788776651_johannes' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', '8J+F4kPyWdsx' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
@@ -35,6 +38,7 @@ define( 'DB_HOST', 'localhost' );
 define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The database collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );pe. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
 
 /**#@+
