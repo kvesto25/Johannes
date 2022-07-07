@@ -27,6 +27,25 @@ function get_menu_items($name) {
     return $out;
 }
 
+add_action('wp_ajax_get_certificates', 'get_certificates_callback');
+add_action('wp_ajax_nopriv_get_certificates', 'get_certificates_callback');
+function get_certificates_callback(){
+    $return_data = array();
+
+    for($i = 0; $i < 10; $i++){
+        $temp_array = array(
+            "id" => ($i+1),
+            "title" => "certificates " . ($i+1),
+            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
+            "small_description" => "The majority of assignments we do for clients are document translations. From brochures to reports and from manuals to contracts. Translation Agency Perfect has been providing these types. certificates" . ($i+1)
+        );
+        array_push($return_data, $temp_array);
+    }
+
+
+    die(html_entity_decode(json_encode($return_data)));
+}
+
 add_action('wp_ajax_get_languages', 'get_languages_callback');
 add_action('wp_ajax_nopriv_get_languages', 'get_languages_callback');
 function get_languages_callback(){
@@ -51,4 +70,148 @@ function get_languages_callback(){
 
 
     die(html_entity_decode(json_encode($return_data)));
+}
+
+add_action('wp_ajax_get_quote', 'get_quote_callback');
+add_action('wp_ajax_nopriv_get_quote', 'get_quote_callback');
+function get_quote_callback(){
+    $result = array(
+        "status" => true,
+        "text" => ""
+    );
+    if(empty($_POST)){
+        $result = array(
+            "status" => false,
+            "text" => "Немаэ даних"
+        );
+    }
+
+    die(html_entity_decode(json_encode($result)));
+}
+
+add_action('wp_ajax_contact_as', 'contact_as_callback');
+add_action('wp_ajax_nopriv_contact_as', 'contact_as_callback');
+function contact_as_callback(){
+    $result = array(
+        "status" => true,
+        "text" => ""
+    );
+    if(empty($_POST)){
+        $result = array(
+            "status" => false,
+            "text" => "Немаэ даних"
+        );
+    }
+
+    die(html_entity_decode(json_encode($result)));
+}
+
+add_action('wp_ajax_get_languages_by_source_lang', 'get_languages_by_source_lang_callback');
+add_action('wp_ajax_nopriv_get_languages_by_source_lang', 'get_languages_by_source_lang_callback');
+function get_languages_by_source_lang_callback(){
+    $result = array(
+        "status" => true,
+        "text" => "",
+        "data" => array(
+            "German" => array(
+                "General" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Technical" => array(
+                    "fullCheck" => 0.11,
+                    "sampleCheck" => 0.09
+                ),
+                "Legal" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Medical" => array(
+                    "fullCheck" => 0.15,
+                    "sampleCheck" => 0.13
+                ),
+            ),
+            "English" => array(
+                "General" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Technical" => array(
+                    "fullCheck" => 0.11,
+                    "sampleCheck" => 0.09
+                ),
+                "Legal" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Medical" => array(
+                    "fullCheck" => 0.15,
+                    "sampleCheck" => 0.13
+                ),
+            ),
+            "French" => array(
+                "General" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Technical" => array(
+                    "fullCheck" => 0.11,
+                    "sampleCheck" => 0.09
+                ),
+                "Legal" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Medical" => array(
+                    "fullCheck" => 0.15,
+                    "sampleCheck" => 0.13
+                ),
+            ),
+            "Italian" => array(
+                "General" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Technical" => array(
+                    "fullCheck" => 0.11,
+                    "sampleCheck" => 0.09
+                ),
+                "Legal" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Medical" => array(
+                    "fullCheck" => 0.15,
+                    "sampleCheck" => 0.13
+                ),
+            ),
+            "Spanish" => array(
+                "General" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Technical" => array(
+                    "fullCheck" => 0.11,
+                    "sampleCheck" => 0.09
+                ),
+                "Legal" => array(
+                    "fullCheck" => 0.10,
+                    "sampleCheck" => 0.08
+                ),
+                "Medical" => array(
+                    "fullCheck" => 0.15,
+                    "sampleCheck" => 0.13
+                ),
+            )
+        )
+    );
+    if(empty($_POST)){
+        $result = array(
+            "status" => false,
+            "text" => "Немаэ даних",
+            "data" => array()
+        );
+    }
+
+    die(html_entity_decode(json_encode($result)));
 }
