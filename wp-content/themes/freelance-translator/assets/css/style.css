@@ -3696,6 +3696,9 @@ button {
 .step:last-child {
 	padding-left: 0;
 }
+.step:last-child {
+	padding-bottom: 0;
+}
 @media screen and (max-width: 991px) {
 	.step:first-child,
 	.step:last-child {

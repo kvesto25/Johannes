@@ -38,6 +38,11 @@ const app = new Vue({
 		},
 	},
 	created() {
+		let params = new URLSearchParams();
+		params.append('action', 'get_users');
+		axios.post(ajax_url, params).then(res => {
+			this.data = res.data;
+		});
 		this.team = [
 			{
 				personId: 0,

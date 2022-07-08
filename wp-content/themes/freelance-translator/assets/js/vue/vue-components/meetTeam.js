@@ -39,7 +39,7 @@ Vue.component('meetTeam', {
 						:class="{'meet-team__photo--elips meet-team__photo--up':item.personSubtitle==='CEO'}"
 					>
 						<img
-							:src="'img/'+item.personImageUrl"
+							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+item.personImageUrl"
 							alt=""
 						/>
 					</p>
@@ -57,7 +57,7 @@ Vue.component('meetTeam', {
 				>
 					<p class="meet-team__photo meet-team__photo--small">
 						<img
-							:src="'img/'+item.personImageUrl"
+							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+item.personImageUrl"
 							alt=""
 						/>
 					</p>
@@ -100,7 +100,7 @@ Vue.component('meetTeam', {
 						:class="{'meet-team__slide-photo--elips':getCurrenPerson.personSubtitle==='CEO'}"
 					>
 						<img
-							:src="'img/'+getCurrenPerson.personMoreInfo.bigImageUrl"
+							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+getCurrenPerson.personMoreInfo.bigImageUrl"
 							alt=""
 						/>
 					</p>
@@ -126,7 +126,7 @@ Vue.component('meetTeam', {
 			>
 				<p class="meet-team__photo">
 					<img
-						:src="'img/'+nextBtn.imgUrl"
+						:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+nextBtn.imgUrl"
 						alt=""
 					/>
 				</p>
