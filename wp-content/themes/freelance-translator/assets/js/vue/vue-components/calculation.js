@@ -16,7 +16,7 @@ Vue.component('calculation', {
 			formData: {
 				sourse: '',
 				target: '',
-				area: 'General',
+				area: ['General'],
 				quality: 0,
 				words: null,
 				total: 0,
@@ -99,8 +99,37 @@ Vue.component('calculation', {
 						class="calculation__form-dropdawn calculation__form-dropdawn--large dropdawn"
 						:class="{'active':isOpenArea}"
 					>
-						<div class="dropdawn__select-btn dropdawn--multiple__select-btn" @click="isOpenArea = !isOpenArea">
-							<span>{{formData.area}}</span>
+						<div class="dropdawn__select-btn dropdawn--multiple__select-btn" @click.self="isOpenArea = !isOpenArea">
+							<span
+								v-for="(val,index) in formData.area"
+								@click="delArea(index)"
+							>
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M5 5L8 8L5 11"
+										stroke="white"
+										stroke-linecap="round"
+									/>
+									<path
+										d="M11.375 11L8.375 8L11.375 5"
+										stroke="white"
+										stroke-linecap="round"
+									/>
+									<circle
+										cx="8"
+										cy="8"
+										r="7.5"
+										stroke="white"
+									/>
+								</svg>
+								{{val}}
+							</span>
 						</div>
 						<div class="dropdawn__content">
 							<ul class="dropdawn__options">
@@ -216,7 +245,12 @@ Vue.component('calculation', {
 			return this.target_languages;
 		},
 		getTotal() {
-			if (this.formData.sourse != '' && this.formData.target != '' && this.formData.words > 0) {
+			if (
+				this.formData.sourse != '' &&
+				this.formData.target != '' &&
+				this.formData.area.length > 0 &&
+				this.formData.words > 0
+			) {
 				let tot = this.formData.quality * this.formData.words;
 				this.formData.total = tot.toFixed(2);
 			} else {
@@ -246,18 +280,48 @@ Vue.component('calculation', {
 
 				this.area_expertise = data;
 
+				this.formData.area = ['General'];
 				this.quality = data.General;
 				this.formData.quality = data.General.fullCheck;
 			}
 		},
 
-		updateArea(val, data) {
-			if (val != this.formData.area) {
-				this.formData.area = val;
-				this.isOpenArea = false;
-				this.quality = data;
-				this.formData.quality = data.fullCheck;
+		updateLangTo(val) {
+			if (!this.formData.translate_to.find(el => el === val)) {
+				this.formData.translate_to.push(val);
 			}
+		},
+		updateArea(val) {
+			if (!this.formData.area.find(el => el === val)) {
+				this.formData.area.push(val);
+				this.isOpenArea = false;
+			}
+			this.calcQuality();
+		},
+		delArea(index) {
+			this.formData.area.splice(index, 1);
+			this.calcQuality();
+		},
+		calcQuality() {
+			let sampleCheck = 0;
+			let fullCheck = 0;
+
+			if (this.formData.area.length > 0) {
+				this.formData.area.forEach(element => {
+					fullCheck += this.area_expertise[element].fullCheck;
+					sampleCheck += this.area_expertise[element].sampleCheck;
+				});
+
+				fullCheck = (fullCheck / this.formData.area.length).toFixed(2);
+				sampleCheck = (sampleCheck / this.formData.area.length).toFixed(2);
+			}
+
+			this.quality = {
+				fullCheck: fullCheck,
+				sampleCheck: sampleCheck,
+			};
+
+			this.formData.quality = fullCheck;
 		},
 	},
 });
