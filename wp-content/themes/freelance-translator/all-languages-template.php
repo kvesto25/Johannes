@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Contact-page template
+* Template Name: All-languages template
 */
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
@@ -32,11 +32,11 @@ $desc = $fields['description'];
 
 <div id="app">
 	<template>
-		<all-languages></all-languages>
+		<info-table :action="'get_languages'"></info-table>
 	</template>
 	<!-- <script
         type="application/javascript"
-        src="js/modules/meetTeam.js"
+        src="js/modules/infoTable.js"
       ></script> -->
 </div>
 <section class="our-clients">

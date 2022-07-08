@@ -101,7 +101,9 @@ $assets_url = $template_url . '/assets';
     </div>
 </footer>
 
-<script src="<?= $assets_url ?>/js/vue/vue-components/allLanguages.js"></script>
+
+<script src="<?= $assets_url ?>/js/vue/vue-components/calculation.js"></script>
+<script src="<?= $assets_url ?>/js/vue/vue-components/infoTable.js"></script>
 <script src="<?= $assets_url ?>/js/vue/vue-components/meetTeam.js"></script>
 <script src="<?= $assets_url ?>/js/vue/vue-components/getquote.js"></script>
 <script src="<?= $assets_url ?>/js/vue/vue.js"></script>
