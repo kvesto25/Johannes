@@ -48,6 +48,26 @@ function get_certificates_callback()
     die(html_entity_decode(json_encode($return_data)));
 }
 
+add_action('wp_ajax_get_disciplines', 'get_disciplines_callback');
+add_action('wp_ajax_nopriv_get_disciplines', 'get_disciplines_callback');
+function get_disciplines_callback()
+{
+    $return_data = array();
+
+    for ($i = 0; $i < 10; $i++) {
+        $temp_array = array(
+            "id" => ($i + 1),
+            "title" => "certificates " . ($i + 1),
+            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
+            "small_description" => "The majority of assignments we do for clients are document translations. From brochures to reports and from manuals to contracts. Translation Agency Perfect has been providing these types. certificates" . ($i + 1)
+        );
+        array_push($return_data, $temp_array);
+    }
+
+
+    die(html_entity_decode(json_encode($return_data)));
+}
+
 add_action('wp_ajax_get_languages', 'get_languages_callback');
 add_action('wp_ajax_nopriv_get_languages', 'get_languages_callback');
 function get_languages_callback()
@@ -209,6 +229,99 @@ function get_languages_by_source_lang_callback()
                     "sampleCheck" => 0.13
                 ),
             )
+        )
+    );
+    if (empty($_POST)) {
+        $result = array(
+            "status" => false,
+            "text" => "Немаэ даних",
+            "data" => array()
+        );
+    }
+
+    die(html_entity_decode(json_encode($result)));
+}
+add_action('wp_ajax_get_users', 'get_users_callback');
+add_action('wp_ajax_nopriv_get_users', 'get_users_callback');
+function get_users_callback(){
+    $result = array(
+        array(
+            "personId" => 0,
+            "personName" => 'Melissa Becker',
+            "personImageUrl" => 'meet-team-1.jpg',
+            "personSubtitle" => 'Co-founder',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 1,
+            "personName" => 'John Crimson',
+            "personImageUrl" => 'meet-team-2.jpg',
+            "personSubtitle" => 'CEO',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 2,
+            "personName" => 'Jack Billigan',
+            "personImageUrl" => 'meet-team-3.jpg',
+            "personSubtitle" => 'Co-founder',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 3,
+            "personName" => 'Steve Coulberg',
+            "personImageUrl" => 'meet-team-4.jpg',
+            "personSubtitle" => 'SMM manager',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 4,
+            "personName" => 'Steve Coulberg',
+            "personImageUrl" => 'meet-team-5.jpg',
+            "personSubtitle" => 'SMM manager',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 5,
+            "personName" => 'Steve Coulberg',
+            "personImageUrl" => 'meet-team-6.jpg',
+            "personSubtitle" => 'SMM manager',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 6,
+            "personName" => 'Steve Coulberg',
+            "personImageUrl" => 'meet-team-7.jpg',
+            "personSubtitle" => 'SMM manager',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+        array(
+            "personId" => 7,
+            "personName" => 'Steve Coulberg',
+            "personImageUrl" => 'meet-team-8.jpg',
+            "personSubtitle" => 'SMM manager',
+            "isHaveMoreInfo" => false,
+            "personMoreInfo" => array(),
+        ),
+    );
+    die(html_entity_decode(json_encode($result)));
+}
+add_action('wp_ajax_get_user_by_id', 'get_user_by_id_callback');
+add_action('wp_ajax_nopriv_get_user_by_id', 'get_user_by_id_callback');
+function get_user_by_id_callback(){
+    $result = array(
+        "status" => true,
+        "text" => "",
+        "data" => array(
+            "bigImageUrl" => "meet-team-1.jpg",
+            "description" => "This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with!",
+            "link" => "http://johannes.taras-lavrin.online/author/melissa_becker/",
         )
     );
     if (empty($_POST)) {
