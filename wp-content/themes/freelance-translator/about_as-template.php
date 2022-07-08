@@ -30,7 +30,7 @@ $assets_url = $template_url . '/assets';
 </section>
 <div id="app">
     <template v-if="meetTeamIsLoad">
-        <meet-team :team="team"></meet-team>
+        <meet-team></meet-team>
     </template>
     <!-- <script
         type="application/javascript"

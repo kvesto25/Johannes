@@ -9,13 +9,13 @@ const tl3 = gsap.timeline({
 });
 
 Vue.component('meetTeam', {
-	props: ['team'],
-
 	data() {
 		return {
+			team: [],
 			nextBtn: {},
 			showNextBtn: true,
 			currenPersonId: 0,
+			isShowSlider: false,
 			sliderIsOpen: false,
 		};
 	},
@@ -72,7 +72,7 @@ Vue.component('meetTeam', {
 			</div>
 		</div>
 
-		<div class="meet-team__slider">
+		<div v-if="isShowSlider" class="meet-team__slider">
 			<button
 				class="meet-team__close-btn"
 				@click="closeSlider()"
@@ -92,22 +92,22 @@ Vue.component('meetTeam', {
 			</button>
 			<div class="meet-team__slide">
 				<a
-					:href="getCurrenPerson.personMoreInfo.link"
+					:href=" team[currenPersonId].personMoreInfo.link"
 					class="meet-team__slide-left"
 				>
 					<p
 						class="meet-team__slide-photo"
-						:class="{'meet-team__slide-photo--elips':getCurrenPerson.personSubtitle==='CEO'}"
+						:class="{'meet-team__slide-photo--elips': team[currenPersonId].personSubtitle==='CEO'}"
 					>
 						<img
-							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+getCurrenPerson.personMoreInfo.bigImageUrl"
-							alt=""
+							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+ team[currenPersonId].personMoreInfo.bigImageUrl"
+							:alt="team[currenPersonId].personMoreInfo.bigImageUrl"
 						/>
 					</p>
 
-					<p class="meet-team__slide-name">{{getCurrenPerson.personName}}</p>
+					<p class="meet-team__slide-name">{{ team[currenPersonId].personName}}</p>
 					<p class="meet-team__slide-position">
-						{{getCurrenPerson.personSubtitle}}
+						{{ team[currenPersonId].personSubtitle}}
 					</p>
 				</a>
 				<div class="meet-team__slide-right">
@@ -115,7 +115,7 @@ Vue.component('meetTeam', {
 						<!-- <span class="reviews__text--red"
 							>is the best i’ve ever cooperate with!</span
 						> -->
-						{{getCurrenPerson.personMoreInfo.description}}
+						{{ team[currenPersonId].personMoreInfo.description}}
 					</p>
 				</div>
 			</div>
@@ -138,12 +138,8 @@ Vue.component('meetTeam', {
 	</div>
 </section>
   `,
-	created() {
-		this.nextBtn = {
-			imgUrl: this.team[1].personImageUrl,
-			name: this.team[1].personName,
-			position: this.team[1].personSubtitle,
-		};
+	mounted() {
+		this.getPersons();
 	},
 	computed: {
 		getBigPerson() {
@@ -164,20 +160,37 @@ Vue.component('meetTeam', {
 			});
 			return res;
 		},
-		getCurrenPerson() {
-			const obj = this.team[this.currenPersonId];
-			if (!obj.isHaveMoreInfo) {
-				obj.personMoreInfo = {
-					bigImageUrl: obj.personImageUrl,
-					description: 'lasdfklasjdflkjas;ldfjlsajdflkafjl',
-					link: '#',
-				};
-				this.team[this.currenPersonId].isHaveMoreInfo = true;
-			}
-			return obj;
-		},
 	},
 	methods: {
+		getPersons() {
+			let params = new URLSearchParams();
+			params.append('action', 'get_users');
+			axios.post(ajax_url, params).then(res => {
+				this.team = res.data;
+				this.nextBtn = {
+					imgUrl: this.team[1].personImageUrl,
+					name: this.team[1].personName,
+					position: this.team[1].personSubtitle,
+				};
+			});
+		},
+		async getPersonsById() {
+			if (this.team[this.currenPersonId].personMoreInfo.description == undefined) {
+				let params = new URLSearchParams();
+				params.append('action', 'get_user_by_id');
+				params.append('id', this.team[this.currenPersonId].id);
+				await axios.post(ajax_url, params).then(res => {
+					const data = res.data.data;
+					this.team[this.currenPersonId].personMoreInfo = {
+						bigImageUrl: data.bigImageUrl,
+						description: data.description,
+						link: data.link,
+					};
+					this.team[this.currenPersonId].isHaveMoreInfo = true;
+				});
+			}
+		},
+
 		nextBtnUpdate() {
 			if (this.team[this.currenPersonId + 1]) {
 				this.showNextBtn = true;
@@ -188,12 +201,10 @@ Vue.component('meetTeam', {
 				this.showNextBtn = false;
 			}
 		},
-		nextSlide() {
-			//Запрос на серв
 
+		nextSlide() {
 			const nextSlide = document.querySelector('.meet-team__next-slide'),
 				content = document.querySelector('.meet-team__slide');
-
 			tl2
 				.to(nextSlide, {
 					right: '-300px',
@@ -201,7 +212,7 @@ Vue.component('meetTeam', {
 				.to(
 					content,
 					{
-						x: '-1000px',
+						x: '-2000px',
 
 						duration: 0.4,
 					},
@@ -210,7 +221,7 @@ Vue.component('meetTeam', {
 				.call(
 					() => {
 						this.currenPersonId++;
-
+						this.getPersonsById();
 						this.nextBtnUpdate();
 					},
 					'',
@@ -230,13 +241,13 @@ Vue.component('meetTeam', {
 				);
 		},
 		openSlider(id) {
+			this.currenPersonId = id;
+			this.getPersonsById();
+			this.nextBtnUpdate();
+			this.isShowSlider = true;
 			const persons = document.querySelectorAll('.meet-team__person'),
 				nextSlide = document.querySelector('.meet-team__next-slide'),
 				wrapper = document.querySelector('.meet-team__wrapper');
-
-			console.log(id);
-			this.currenPersonId = id;
-			this.nextBtnUpdate();
 
 			tl.staggerTo([...persons], 0.5, { y: 20, opacity: 0, pointerEvents: 'none' }, 0.2).call(
 				() => {

@@ -243,9 +243,11 @@ function get_languages_by_source_lang_callback()
 }
 add_action('wp_ajax_get_users', 'get_users_callback');
 add_action('wp_ajax_nopriv_get_users', 'get_users_callback');
-function get_users_callback(){
+function get_users_callback()
+{
     $result = array(
         array(
+            "id" => 15,
             "personId" => 0,
             "personName" => 'Melissa Becker',
             "personImageUrl" => 'meet-team-1.jpg',
@@ -254,6 +256,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 18,
             "personId" => 1,
             "personName" => 'John Crimson',
             "personImageUrl" => 'meet-team-2.jpg',
@@ -262,6 +265,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 13,
             "personId" => 2,
             "personName" => 'Jack Billigan',
             "personImageUrl" => 'meet-team-3.jpg',
@@ -270,6 +274,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 11,
             "personId" => 3,
             "personName" => 'Steve Coulberg',
             "personImageUrl" => 'meet-team-4.jpg',
@@ -278,6 +283,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 8,
             "personId" => 4,
             "personName" => 'Steve Coulberg',
             "personImageUrl" => 'meet-team-5.jpg',
@@ -286,6 +292,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 19,
             "personId" => 5,
             "personName" => 'Steve Coulberg',
             "personImageUrl" => 'meet-team-6.jpg',
@@ -294,6 +301,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 7,
             "personId" => 6,
             "personName" => 'Steve Coulberg',
             "personImageUrl" => 'meet-team-7.jpg',
@@ -302,6 +310,7 @@ function get_users_callback(){
             "personMoreInfo" => array(),
         ),
         array(
+            "id" => 17,
             "personId" => 7,
             "personName" => 'Steve Coulberg',
             "personImageUrl" => 'meet-team-8.jpg',
@@ -314,7 +323,8 @@ function get_users_callback(){
 }
 add_action('wp_ajax_get_user_by_id', 'get_user_by_id_callback');
 add_action('wp_ajax_nopriv_get_user_by_id', 'get_user_by_id_callback');
-function get_user_by_id_callback(){
+function get_user_by_id_callback()
+{
     $result = array(
         "status" => true,
         "text" => "",
