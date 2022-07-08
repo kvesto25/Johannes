@@ -1,57 +1,7 @@
 Vue.component('getquote', {
 	data() {
 		return {
-			lang: [
-				'Afghanistan',
-				'Algeria',
-				'Argentina',
-				'Australia',
-				'Azerbaijani',
-				'Bangladesh',
-				'Belgium',
-				'Bhutan',
-				'Brazil',
-				'Canada',
-				'China',
-				'Denmark',
-				'Ethiopia',
-				'Finland',
-				'France',
-				'Germany',
-				'Hungary',
-				'Iceland',
-				'India',
-				'Indonesia',
-				'Iran',
-				'Italy',
-				'Japan',
-				'Malaysia',
-				'Maldives',
-				'Mexico',
-				'Morocco',
-				'Nepal',
-				'Netherlands',
-				'Nigeria',
-				'Norway',
-				'Pakistan',
-				'Peru',
-				'Russia',
-				'Romania',
-				'South Africa',
-				'Spain',
-				'Sri Lanka',
-				'Sweden',
-				'Switzerland',
-				'Thailand',
-				'Turkey',
-				'Uganda',
-				'Ukraine',
-				'United States',
-				'United Kingdom',
-				'Vietnam',
-			],
-			meetTeamIsLoad: true,
-
+			lang: [],
 			serchLangFrom: '',
 			isOpenLangFrom: false,
 
@@ -60,74 +10,71 @@ Vue.component('getquote', {
 
 			isOpenFile: false,
 
-			patterns: [
+			formData: {
+				name: '',
+				first_name: '',
+				last_name: '',
+				email: '',
+				phone: '',
+				translate_from: 'Afghanistan',
+				translate_to: ['German'],
+				source: 'Yes',
+				files: [],
+				message: '',
+			},
+			options: [
 				{
-					name: 'Name of organisation',
+					name: 'name',
 					pattern: /^[a-zA-Z ]{2,30}$/,
-					value: '',
-					isValid: false,
-					isVisit: false,
+					isValid: null,
 					isImportant: false,
 				},
 				{
-					name: 'First Name',
+					name: 'first_name',
 					pattern: /^[a-zA-Z ]{2,30}$/,
-					value: '',
-					isValid: false,
-					isVisit: false,
+					isValid: null,
 					isImportant: true,
 				},
 				{
-					name: 'Last Name',
+					name: 'last_name',
 					pattern: /^[a-zA-Z ]{2,30}$/,
-					value: '',
-					isValid: false,
-					isVisit: false,
+					isValid: null,
 					isImportant: true,
 				},
 				{
-					name: 'Email',
+					name: 'email',
 					pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-					value: '',
-					isValid: false,
-					isVisit: false,
+					isValid: null,
 					isImportant: true,
 				},
 				{
-					name: 'Phone',
+					name: 'phone',
 					pattern: /^[0-9]{7,14}$/,
-					value: '',
-					isValid: false,
-					isVisit: false,
+					isValid: null,
 					isImportant: false,
 				},
 				{
-					name: 'Translate from',
-					value: 'Azerbaijani',
+					name: 'translate_from',
 					isImportant: false,
 				},
 				{
-					name: 'Translate to',
-					value: ['German'],
+					name: 'translate_to',
 					isImportant: false,
 				},
 				{
-					name: 'Translatable source file available',
-					value: 'Yes',
+					name: 'source',
 					isImportant: false,
 				},
 				{
-					name: 'Drag',
-					value: null,
+					name: 'files',
 					isImportant: false,
 				},
 				{
-					name: 'Message',
-					value: '',
+					name: 'message',
 					isImportant: false,
 				},
 			],
-		}
+		};
 	},
 
 	template: `
@@ -149,10 +96,8 @@ Vue.component('getquote', {
 						type="text"
 						name=""
 						id=""
-						:value="findValue('Name of organisation')"
-						@input="onInput($event.target.value,'Name of organisation')"
+						v-model="formData.name"
 						class="get-quote__form-input"
-						:class="getClases('Name of organisation')"
 					/> </label
 				><label class="get-quote__form-label">
 					First Name
@@ -160,39 +105,38 @@ Vue.component('getquote', {
 						type="text"
 						name="firstName"
 						id="firstName"
-						:value="findValue('First Name')"
-						@input="onInput($event.target.value,'First Name')"
+						v-model="formData.first_name"
 						class="get-quote__form-input"
-						:class="getClases('First Name')" /></label
+						:class="getIsValid('first_name')"
+						 /></label
 				><label class="get-quote__form-label">
 					Last Name<input
 						type="text"
 						name="lastName"
 						id="lastName"
-						:value="findValue('Last Name')"
-						@input="onInput($event.target.value,'Last Name')"
+						v-model="formData.last_name"
 						class="get-quote__form-input"
-						:class="getClases('Last Name')" /></label
+						:class="getIsValid('last_name')"
+						 /></label
 				><label class="get-quote__form-label">
 					Email Address
 					<input
-						type="text"
+						type="email"
 						name="email"
 						id="email"
-						:value="findValue('Email')"
-						@input="onInput($event.target.value,'Email')"
+						v-model="formData.email"
 						class="get-quote__form-input"
-						:class="getClases('Email')" /></label
+						:class="getIsValid('email')"
+						 /></label
 				><label class="get-quote__form-label">
 					Phone Number
 					<input
-						type="text"
+						type="tel"
 						name="phone"
 						id="phone"
-						:value="findValue('Phone')"
-						@input="onInput($event.target.value,'Phone')"
+						v-model="formData.phone"
 						class="get-quote__form-input"
-						:class="getClases('Phone')"
+						
 				/></label>
 			</div>
 			<div class="get-quote__form-section">
@@ -207,7 +151,7 @@ Vue.component('getquote', {
 							class="dropdawn__select-btn"
 							@click="isOpenLangFrom = !isOpenLangFrom"
 						>
-							<span>{{findValue('Translate from')}}</span>
+							<span>{{formData.translate_from}}</span>
 							<i class="dropdawn__arrow"></i>
 						</div>
 						<div class="dropdawn__content">
@@ -225,7 +169,7 @@ Vue.component('getquote', {
 									v-for="lan in getLangFrom"
 									@click="updateLangFrom(lan)"
 								>
-									{{lan}}
+									{{lan.title}}
 								</li>
 							</ul>
 						</div>
@@ -241,9 +185,9 @@ Vue.component('getquote', {
 							class="dropdawn__select-btn dropdawn--multiple__select-btn"
 							@click.self="isOpenLangTo = !isOpenLangTo"
 						>
-							<template v-if="findValue('Translate to')[0]">
+							<template v-if="formData.translate_to[0]">
 								<span
-									v-for="(lan,index) in findValue('Translate to')"
+									v-for="(lan,index) in formData.translate_to"
 									@click="delLangTo(index)"
 								>
 									<svg
@@ -290,7 +234,7 @@ Vue.component('getquote', {
 									v-for="lan in getLangTo"
 									@click="updateLangTo(lan)"
 								>
-									{{lan}}
+									{{lan.title}}
 								</li>
 							</ul>
 						</div>
@@ -307,7 +251,7 @@ Vue.component('getquote', {
 							class="dropdawn__select-btn"
 							@click.self="isOpenFile = !isOpenFile"
 						>
-							<span>{{findValue('Translatable source file available')}}</span>
+							<span>{{formData.source}}</span>
 							<i class="dropdawn__arrow"></i>
 						</div>
 						<div class="dropdawn__content">
@@ -344,8 +288,8 @@ Vue.component('getquote', {
 							/>
 						</svg>
 
-						<template v-if="findValue('Drag') != null">
-							<span v-for="item in findValue('Drag')">{{item.name}}</span>
+						<template v-if="formData.files.length > 0">
+							<span v-for="item in formData.files">{{item.name}}</span>
 						</template>
 						<template v-else> Drag file(s) here or click to upload </template>
 					</p>
@@ -359,8 +303,7 @@ Vue.component('getquote', {
 						class="get-quote__form-textarea"
 						name=""
 						id=""
-            :value="findValue('Message')""
-						@input="onInputTextarea($event.target.value,'Message')"
+            v-model="formData.message"
 					></textarea>
 					<button
 						type="submit"
@@ -388,138 +331,103 @@ Vue.component('getquote', {
 </section>
 
   `,
+	created() {
+		let params = new URLSearchParams();
+		params.append('action', 'get_languages');
+		axios.post(ajax_url, params).then(res => {
+			this.lang = res.data;
+		});
+	},
 	computed: {
 		getLangFrom() {
-			let arr = []
+			let arr = [];
 			if (this.serchLangFrom.length > 0) {
-				arr = this.lang.filter(data =>
-					data.toLowerCase().startsWith(this.serchLangFrom),
-				)
-				return arr
+				arr = this.lang.filter(data => data.title.toLowerCase().startsWith(this.serchLangFrom));
+				return arr;
 			}
-			return this.lang
+			return this.lang;
 		},
 		getLangTo() {
-			let arr = []
+			let arr = [];
 			if (this.serchLangTo.length > 0) {
-				arr = this.lang.filter(data =>
-					data.toLowerCase().startsWith(this.serchLangTo),
-				)
-				return arr
+				arr = this.lang.filter(data => data.title.toLowerCase().startsWith(this.serchLangTo));
+				return arr;
 			}
-			return this.lang
+			return this.lang;
 		},
 	},
 	methods: {
-		selectFile() {
-			const elem = this.patterns.find(patt => patt.name === 'Drag')
-			elem.value = this.$refs.file.files
-		},
-		updateFile(val) {
-			const elem = this.patterns.find(
-				patt => patt.name === 'Translatable source file available',
-			)
-			elem.value = val
-			this.isOpenFile = false
-		},
-		delLangTo(index) {
-			const elem = this.patterns.find(patt => patt.name === 'Translate to')
-			elem.value.splice(index, 1)
-		},
 		updateLangFrom(val) {
-			const elem = this.patterns.find(patt => patt.name === 'Translate from')
-			elem.value = val
-			this.isOpenLangFrom = false
+			this.formData.translate_from = val;
+			this.isOpenLangFrom = false;
+		},
+
+		delLangTo(index) {
+			this.formData.translate_to.splice(index, 1);
 		},
 		updateLangTo(val) {
-			const elem = this.patterns.find(patt => patt.name === 'Translate to')
-			if (!elem.value.find(el => el === val)) {
-				elem.value.push(val)
+			if (!this.formData.translate_to.find(el => el === val)) {
+				this.formData.translate_to.push(val);
 			}
 		},
-		onInputTextarea(e, name) {
-			const elem = this.patterns.find(patt => patt.name === name)
-			elem.value = e
-		},
-		onInput(e, name) {
-			const elem = this.patterns.find(patt => patt.name === name)
-			elem.value = e
-			elem.isVisit = true
-			elem.isValid = this.isValidCheck(e, this.getPatt(name))
-		},
-		findValue(name) {
-			return this.patterns.find(patt => patt.name === name).value
-		},
-		isValidCheck(val, pat) {
-			return pat.test(val)
-		},
-		getClases(name) {
-			const elem = this.patterns.find(patt => patt.name === name)
-			if (elem.isVisit) {
-				return elem.isValid ? 'valid' : 'error'
+
+		selectFile() {
+			this.formData.files = [];
+			for (var i = 0; i < this.$refs.file.files.length; i++) {
+				let file = this.$refs.file.files[i];
+				this.$set(this.formData.files, i, file);
 			}
-			return ''
 		},
-		getPatt(name) {
-			return this.patterns.find(patt => patt.name === name).pattern
+		updateFile(val) {
+			his.formData.source = val;
+			this.isOpenFile = false;
+		},
+
+		getIsValid(name) {
+			const elem = this.options.find(patt => patt.name === name);
+			if (elem.isValid != null) {
+				return elem.isValid ? 'valid' : 'error';
+			}
+			return '';
 		},
 
 		submite() {
-			const filesData = new FormData()
-			let flag = true
+			let error = [];
 
-			this.patterns.every(element => {
-				if (Array.isArray(element.value)) {
-					if (element.value.length > 0) {
-						for (let i = 0; i < element.value.length; i++) {
-							filesData.append(element.name, element.value[i])
-						}
-					} else if (element.isImportant) {
-						flag = false
-						return false
-					}
-				} else if (element.name === 'Drag') {
-					if (element.value) {
-						for (let i = 0; i < element.value.length; i++) {
-							filesData.append(element.name, element.value[i])
-						}
-					}
-				} else {
-					// eslint-disable-next-line no-lonely-if
-					if (element.value != '') {
-						if ('isValid' in element) {
-							if (element.isValid) {
-								filesData.append(element.name, element.value)
-							} else {
-								flag = false
-								element.isVisit = true
-								return false
-							}
-						} else {
-							filesData.append(element.name, element.value)
-						}
+			this.options.forEach(element => {
+				if (element.isImportant) {
+					if (!element.pattern.test(this.formData[element.name])) {
+						error.push(element.name);
+						element.isValid = false;
 					} else {
-						// eslint-disable-next-line no-lonely-if
-						if (element.isImportant) {
-							flag = false
-							element.isVisit = true
-							return false
-						}
+						element.isValid = null;
 					}
 				}
+			});
 
-				return true
-			})
-
-			if (flag) {
-				axios.post('/multiple-files', filesData, {
-					headers: {
-						'Content-Type': 'multipart/form-data',
-					},
-				})
+			if (error.length === 0) {
+				const data = JSON.stringify(this.formData);
+				let params = new URLSearchParams();
+				params.append('action', 'get_quote');
+				params.append('data', data);
+				for (var i = 0; i < this.formData.files.length; i++) {
+					let file = this.formData.files[i];
+					params.append('files[' + i + ']', file);
+				}
+				axios
+					.post(ajax_url, params)
+					.then(res => {
+						console.log(res);
+					})
+					.catch(() => {
+						console.log('BAD');
+					});
 			}
-			// else {
-			// }
 		},
+
+		// if (flag) {
+		//
+		// 	console.log(JSON.stringify({ l: 50, m: 'asdf' }));
+		//
 	},
-})
+});
