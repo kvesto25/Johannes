@@ -1,12 +1,12 @@
 const tl = gsap.timeline({
 	defaults: { duration: 0.75, ease: 'Power3.easeOut' },
-})
+});
 const tl2 = gsap.timeline({
 	defaults: { duration: 0.75, ease: 'Power3.easeOut' },
-})
+});
 const tl3 = gsap.timeline({
 	defaults: { duration: 0.75, ease: 'Power3.easeOut' },
-})
+});
 
 Vue.component('meetTeam', {
 	props: ['team'],
@@ -17,7 +17,7 @@ Vue.component('meetTeam', {
 			showNextBtn: true,
 			currenPersonId: 0,
 			sliderIsOpen: false,
-		}
+		};
 	},
 
 	template: `<section class="meet-team">
@@ -143,61 +143,56 @@ Vue.component('meetTeam', {
 			imgUrl: this.team[1].personImageUrl,
 			name: this.team[1].personName,
 			position: this.team[1].personSubtitle,
-		}
+		};
 	},
 	computed: {
 		getBigPerson() {
-			const res = []
+			const res = [];
 			this.team.forEach(pers => {
-				if (
-					pers.personSubtitle === 'Co-founder' ||
-					pers.personSubtitle === 'CEO'
-				) {
-					res.push(pers)
+				if (pers.personSubtitle === 'Co-founder' || pers.personSubtitle === 'CEO') {
+					res.push(pers);
 				}
-			})
-			return res
+			});
+			return res;
 		},
 		getSmallPerson() {
-			const res = []
+			const res = [];
 			this.team.forEach(pers => {
-				if (
-					pers.personSubtitle !== 'Co-founder' &&
-					pers.personSubtitle !== 'CEO'
-				) {
-					res.push(pers)
+				if (pers.personSubtitle !== 'Co-founder' && pers.personSubtitle !== 'CEO') {
+					res.push(pers);
 				}
-			})
-			return res
+			});
+			return res;
 		},
 		getCurrenPerson() {
-			const obj = this.team[this.currenPersonId]
+			const obj = this.team[this.currenPersonId];
 			if (!obj.isHaveMoreInfo) {
 				obj.personMoreInfo = {
 					bigImageUrl: obj.personImageUrl,
 					description: 'lasdfklasjdflkjas;ldfjlsajdflkafjl',
 					link: '#',
-				}
-				this.team[this.currenPersonId].isHaveMoreInfo = true
+				};
+				this.team[this.currenPersonId].isHaveMoreInfo = true;
 			}
-			return obj
+			return obj;
 		},
 	},
 	methods: {
 		nextBtnUpdate() {
 			if (this.team[this.currenPersonId + 1]) {
-				this.showNextBtn = true
-				this.nextBtn.imgUrl = this.team[this.currenPersonId + 1].personImageUrl
-				this.nextBtn.name = this.team[this.currenPersonId + 1].personName
-				this.nextBtn.position =
-					this.team[this.currenPersonId + 1].personSubtitle
+				this.showNextBtn = true;
+				this.nextBtn.imgUrl = this.team[this.currenPersonId + 1].personImageUrl;
+				this.nextBtn.name = this.team[this.currenPersonId + 1].personName;
+				this.nextBtn.position = this.team[this.currenPersonId + 1].personSubtitle;
 			} else {
-				this.showNextBtn = false
+				this.showNextBtn = false;
 			}
 		},
 		nextSlide() {
+			//Запрос на серв
+
 			const nextSlide = document.querySelector('.meet-team__next-slide'),
-				content = document.querySelector('.meet-team__slide')
+				content = document.querySelector('.meet-team__slide');
 
 			tl2
 				.to(nextSlide, {
@@ -210,15 +205,16 @@ Vue.component('meetTeam', {
 
 						duration: 0.4,
 					},
-					'<',
+					'<'
 				)
 				.call(
 					() => {
-						this.currenPersonId++
-						this.nextBtnUpdate()
+						this.currenPersonId++;
+
+						this.nextBtnUpdate();
 					},
 					'',
-					'>',
+					'>'
 				)
 				.to(nextSlide, {
 					right: '0',
@@ -230,53 +226,42 @@ Vue.component('meetTeam', {
 						x: '0',
 						duration: 0.4,
 					},
-					'<',
-				)
+					'<'
+				);
 		},
 		openSlider(id) {
 			const persons = document.querySelectorAll('.meet-team__person'),
 				nextSlide = document.querySelector('.meet-team__next-slide'),
-				wrapper = document.querySelector('.meet-team__wrapper')
+				wrapper = document.querySelector('.meet-team__wrapper');
 
-			console.log(id)
-			this.currenPersonId = id
-			this.nextBtnUpdate()
+			console.log(id);
+			this.currenPersonId = id;
+			this.nextBtnUpdate();
 
-			tl.staggerTo(
-				[...persons],
-				0.5,
-				{ y: 20, opacity: 0, pointerEvents: 'none' },
-				0.2,
-			).call(
+			tl.staggerTo([...persons], 0.5, { y: 20, opacity: 0, pointerEvents: 'none' }, 0.2).call(
 				() => {
-					wrapper.classList.add('open')
+					wrapper.classList.add('open');
 				},
 				'',
-				'>',
-			)
+				'>'
+			);
 			tl2.to(nextSlide, {
 				right: '0',
 				duration: 0.4,
-			})
+			});
 		},
 		closeSlider() {
 			const persons = document.querySelectorAll('.meet-team__person'),
-				wrapper = document.querySelector('.meet-team__wrapper')
+				wrapper = document.querySelector('.meet-team__wrapper');
 			tl3
 				.call(
 					() => {
-						wrapper.classList.remove('open')
+						wrapper.classList.remove('open');
 					},
 					'',
-					'>',
+					'>'
 				)
-				.staggerTo(
-					[...persons],
-					0.5,
-					{ y: 0, opacity: 1, pointerEvents: 'auto' },
-					0.2,
-					'>+1',
-				)
+				.staggerTo([...persons], 0.5, { y: 0, opacity: 1, pointerEvents: 'auto' }, 0.2, '>+1');
 		},
 	},
-})
+});
