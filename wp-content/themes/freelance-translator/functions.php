@@ -253,7 +253,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-1.jpg',
             "personSubtitle" => 'Co-founder',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 18,
@@ -262,7 +266,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-2.jpg',
             "personSubtitle" => 'CEO',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 13,
@@ -271,7 +279,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-3.jpg',
             "personSubtitle" => 'Co-founder',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 11,
@@ -280,7 +292,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-4.jpg',
             "personSubtitle" => 'SMM manager',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 8,
@@ -289,7 +305,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-5.jpg',
             "personSubtitle" => 'SMM manager',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 19,
@@ -298,7 +318,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-6.jpg',
             "personSubtitle" => 'SMM manager',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 7,
@@ -307,7 +331,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-7.jpg',
             "personSubtitle" => 'SMM manager',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
         array(
             "id" => 17,
@@ -316,7 +344,11 @@ function get_users_callback()
             "personImageUrl" => 'meet-team-8.jpg',
             "personSubtitle" => 'SMM manager',
             "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(),
+            "personMoreInfo" => array(
+                "bigImageUrl" => "",
+                "description" => "",
+                "link" => "",
+            ),
         ),
     );
     die(html_entity_decode(json_encode($result)));

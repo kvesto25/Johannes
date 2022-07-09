@@ -90,7 +90,7 @@ Vue.component('meetTeam', {
 					/>
 				</svg>
 			</button>
-			<div class="meet-team__slide">
+			<div  class="meet-team__slide">
 				<a
 					:href=" team[currenPersonId].personMoreInfo.link"
 					class="meet-team__slide-left"
@@ -101,7 +101,6 @@ Vue.component('meetTeam', {
 					>
 						<img
 							:src="'http://johannes/wp-content/themes/freelance-translator/assets/img/'+ team[currenPersonId].personMoreInfo.bigImageUrl"
-							:alt="team[currenPersonId].personMoreInfo.bigImageUrl"
 						/>
 					</p>
 
@@ -138,7 +137,7 @@ Vue.component('meetTeam', {
 	</div>
 </section>
   `,
-	mounted() {
+	created() {
 		this.getPersons();
 	},
 	computed: {
@@ -174,20 +173,34 @@ Vue.component('meetTeam', {
 				};
 			});
 		},
-		async getPersonsById() {
-			if (this.team[this.currenPersonId].personMoreInfo.description == undefined) {
-				let params = new URLSearchParams();
-				params.append('action', 'get_user_by_id');
-				params.append('id', this.team[this.currenPersonId].id);
-				await axios.post(ajax_url, params).then(res => {
-					const data = res.data.data;
-					this.team[this.currenPersonId].personMoreInfo = {
-						bigImageUrl: data.bigImageUrl,
-						description: data.description,
-						link: data.link,
-					};
-					this.team[this.currenPersonId].isHaveMoreInfo = true;
+
+		getPersonsByIdRequest() {
+			let params = new URLSearchParams();
+			params.append('action', 'get_user_by_id');
+			params.append('id', this.team[this.currenPersonId].id);
+			return axios.post(ajax_url, params);
+		},
+
+		getPersonsById(res) {
+			const data = res.data.data;
+			this.team[this.currenPersonId].personMoreInfo = {
+				bigImageUrl: data.bigImageUrl,
+				description: data.description,
+				link: data.link,
+			};
+			this.team[this.currenPersonId].isHaveMoreInfo = true;
+		},
+
+		setPerson(callback) {
+			if (this.team[this.currenPersonId].personMoreInfo.description == '') {
+				this.getPersonsByIdRequest().then(res => {
+					this.getPersonsById(res);
+					this.nextBtnUpdate();
+					callback();
 				});
+			} else {
+				this.nextBtnUpdate();
+				callback();
 			}
 		},
 
@@ -205,33 +218,24 @@ Vue.component('meetTeam', {
 		nextSlide() {
 			const nextSlide = document.querySelector('.meet-team__next-slide'),
 				content = document.querySelector('.meet-team__slide');
-			tl2
-				.to(nextSlide, {
-					right: '-300px',
-				})
-				.to(
-					content,
-					{
-						x: '-2000px',
+			tl.to(nextSlide, {
+				right: '-300px',
+			}).to(
+				content,
+				{
+					x: '-2000px',
 
-						duration: 0.4,
-					},
-					'<'
-				)
-				.call(
-					() => {
-						this.currenPersonId++;
-						this.getPersonsById();
-						this.nextBtnUpdate();
-					},
-					'',
-					'>'
-				)
-				.to(nextSlide, {
-					right: '0',
 					duration: 0.4,
-				})
-				.to(
+				},
+				'<'
+			);
+			this.currenPersonId++;
+
+			this.setPerson(() => {
+				tl.to(nextSlide, {
+					right: '0px',
+					duration: 0.4,
+				}).to(
 					content,
 					{
 						x: '0',
@@ -239,26 +243,28 @@ Vue.component('meetTeam', {
 					},
 					'<'
 				);
+			});
 		},
 		openSlider(id) {
 			this.currenPersonId = id;
-			this.getPersonsById();
-			this.nextBtnUpdate();
-			this.isShowSlider = true;
-			const persons = document.querySelectorAll('.meet-team__person'),
-				nextSlide = document.querySelector('.meet-team__next-slide'),
-				wrapper = document.querySelector('.meet-team__wrapper');
 
-			tl.staggerTo([...persons], 0.5, { y: 20, opacity: 0, pointerEvents: 'none' }, 0.2).call(
-				() => {
-					wrapper.classList.add('open');
-				},
-				'',
-				'>'
-			);
-			tl2.to(nextSlide, {
-				right: '0',
-				duration: 0.4,
+			this.setPerson(() => {
+				this.isShowSlider = true;
+				const persons = document.querySelectorAll('.meet-team__person'),
+					nextSlide = document.querySelector('.meet-team__next-slide'),
+					wrapper = document.querySelector('.meet-team__wrapper');
+
+				tl.staggerTo([...persons], 0.5, { y: 20, opacity: 0, pointerEvents: 'none' }, 0.2).call(
+					() => {
+						wrapper.classList.add('open');
+					},
+					'',
+					'>'
+				);
+				tl2.to(nextSlide, {
+					right: '0',
+					duration: 0.4,
+				});
 			});
 		},
 		closeSlider() {
