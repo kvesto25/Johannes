@@ -3282,20 +3282,8 @@ button {
 .translation-contact-us {
 	min-height: 750px;
 	padding-top: 65px;
-	background: url('../img/chinese-bg-elem-4.png');
-	background-repeat: no-repeat;
-	background-position: -55px center;
 }
-@media screen and (max-width: 1100px) {
-	.translation-contact-us {
-		background-position: -120px center;
-	}
-}
-@media screen and (max-width: 776px) {
-	.translation-contact-us {
-		background: none;
-	}
-}
+
 .translation-contact-us__wrapper {
 	display: flex;
 	justify-content: flex-end;
@@ -4029,22 +4017,9 @@ button {
 .description {
 	padding-top: 70px;
 }
-.description--chinese {
-	position: relative;
+.description--lang {
 	padding-top: 150px;
 	padding-bottom: 210px;
-	overflow: hidden;
-}
-.description--chinese::after {
-	position: absolute;
-	top: -72px;
-	right: -310px;
-	width: 900px;
-	height: 884px;
-	background: url('../img/chinese-bg-elem-3.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-	content: '';
 }
 @media screen and (max-width: 776px) {
 	.description--chinese::after {
@@ -4285,6 +4260,21 @@ button {
 	font-size: 18px;
 	line-height: 164.5%;
 	letter-spacing: 0.045em;
+}
+
+.bg-wrapper {
+	position: relative;
+}
+.bg-wrapper__img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+.bg-wrapper__img img {
+	display: none;
 }
 
 .dropdawn__select-btn,
