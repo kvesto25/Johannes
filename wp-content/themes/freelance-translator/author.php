@@ -3,7 +3,10 @@ $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
 ?>
 <?php get_header(); ?>
-
+<?php
+$author = get_the_author();
+print_r($author);
+?>
     <script>
         let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
     </script>
