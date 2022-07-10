@@ -6,6 +6,8 @@ $assets_url = $template_url . '/assets';
 <?php
 $author = get_the_author();
 print_r($author);
+$author_meta = get_the_author_meta();
+print_r($author_meta);
 ?>
     <script>
         let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
