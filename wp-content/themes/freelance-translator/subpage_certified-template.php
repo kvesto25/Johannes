@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Single-user template
+* Template Name: Single-certified template
 */
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
