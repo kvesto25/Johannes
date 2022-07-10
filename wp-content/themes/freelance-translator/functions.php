@@ -75,24 +75,24 @@ add_action('wp_ajax_nopriv_get_languages', 'get_languages_callback');
 function get_languages_callback()
 {
     $return_data = array();
+    $languages_object = new WP_Query( array(
+        'post_type' => array('languages'),
+        'posts_per_page' => -1,
+        'orderby' => 'ID'
+    ));
 
-    $image = array(
-        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-azerbaijan.png",
-        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-china.png",
-        "https://serikplusplus.github.io/Johanes--front/dist/img/flag-cyprus.png"
-    );
-
-    for ($i = 0; $i < 10; $i++) {
+    $languages = $languages_object->posts;
+    foreach ($languages as $language){
+        $fields = get_fields($language->ID);
         $temp_array = array(
-            "id" => ($i + 1),
-            "title" => "title " . ($i + 1),
-            "image_url" => $image[rand(0, 2)],
-            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
-            "small_description" => "Azerbaijani is spoken all over the world and is widely seen as the mother tongue of the Islamic world.title " . ($i + 1)
+            "id" => $language->ID,
+            "title" => $language->post_title,
+            "image_url" => $fields['state_flag']['url'],
+            "link" => get_permalink($language->ID),
+            "small_description" => get_the_excerpt($language->ID)
         );
         array_push($return_data, $temp_array);
     }
-
 
     die(html_entity_decode(json_encode($return_data)));
 }
@@ -247,133 +247,57 @@ add_action('wp_ajax_get_users', 'get_users_callback');
 add_action('wp_ajax_nopriv_get_users', 'get_users_callback');
 function get_users_callback()
 {
-    $result = array(
-        array(
-            "id" => 15,
-            "personId" => 0,
-            "personName" => 'Melissa Becker',
-            "personImageUrl" => 'meet-team-1.jpg',
-            "personSubtitle" => 'Co-founder',
+    $result = array();
+    $users = get_users();
+    $count = 0;
+    foreach ($users as $user){
+        $userID = $user->ID;
+        $fields = get_fields('user_' . $userID);
+        if (!$fields['type_user']){
+            continue;
+        }
+        $temp = array(
+            "id" => $userID,
+            "personId" => $count,
+            "personName" => $user->display_name,
+            "personImageUrl" => $fields['image']['sizes']['large'],
+            "personSubtitle" => $fields['position'],
             "isHaveMoreInfo" => false,
             "personMoreInfo" => array(
                 "bigImageUrl" => "",
                 "description" => "",
                 "link" => "",
             ),
-        ),
-        array(
-            "id" => 18,
-            "personId" => 1,
-            "personName" => 'John Crimson',
-            "personImageUrl" => 'meet-team-2.jpg',
-            "personSubtitle" => 'CEO',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 13,
-            "personId" => 2,
-            "personName" => 'Jack Billigan',
-            "personImageUrl" => 'meet-team-3.jpg',
-            "personSubtitle" => 'Co-founder',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 11,
-            "personId" => 3,
-            "personName" => 'Steve Coulberg',
-            "personImageUrl" => 'meet-team-4.jpg',
-            "personSubtitle" => 'SMM manager',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 8,
-            "personId" => 4,
-            "personName" => 'Steve Coulberg',
-            "personImageUrl" => 'meet-team-5.jpg',
-            "personSubtitle" => 'SMM manager',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 19,
-            "personId" => 5,
-            "personName" => 'Steve Coulberg',
-            "personImageUrl" => 'meet-team-6.jpg',
-            "personSubtitle" => 'SMM manager',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 7,
-            "personId" => 6,
-            "personName" => 'Steve Coulberg',
-            "personImageUrl" => 'meet-team-7.jpg',
-            "personSubtitle" => 'SMM manager',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-        array(
-            "id" => 17,
-            "personId" => 7,
-            "personName" => 'Steve Coulberg',
-            "personImageUrl" => 'meet-team-8.jpg',
-            "personSubtitle" => 'SMM manager',
-            "isHaveMoreInfo" => false,
-            "personMoreInfo" => array(
-                "bigImageUrl" => "",
-                "description" => "",
-                "link" => "",
-            ),
-        ),
-    );
+        );
+        array_push($result, $temp);
+        $count++;
+    }
     die(html_entity_decode(json_encode($result)));
 }
 add_action('wp_ajax_get_user_by_id', 'get_user_by_id_callback');
 add_action('wp_ajax_nopriv_get_user_by_id', 'get_user_by_id_callback');
 function get_user_by_id_callback()
 {
+//    get_userdata( $user_id );
     $result = array(
-        "status" => true,
-        "text" => "",
-        "data" => array(
-            "bigImageUrl" => "meet-team-1.jpg",
-            "description" => "This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with! This company is the best i’ve ever cooperate with!",
-            "link" => "http://johannes.taras-lavrin.online/author/melissa_becker/",
-        )
+        "status" => false,
+        "text" => "Немаэ даних",
+        "data" => array()
     );
-    if (empty($_POST)) {
-        $result = array(
-            "status" => false,
-            "text" => "Немаэ даних",
-            "data" => array()
-        );
+
+    if (!empty($_POST)) {
+        $fields = get_fields('user_' . $_POST['id']);
+        if ($fields['type_user']){
+            $result = array(
+                "status" => true,
+                "text" => "",
+                "data" => array(
+                    "bigImageUrl" => $fields['image']['url'],
+                    "description" => strip_tags($fields['small_descriptio']),
+                    "link" => get_permalink($_POST['id']),
+                )
+            );
+        }
     }
 
     die(html_entity_decode(json_encode($result)));

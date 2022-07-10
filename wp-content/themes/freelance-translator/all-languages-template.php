@@ -5,8 +5,8 @@
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
 $id = get_the_ID();
-$fields = get_fields($id);
-$desc = $fields['description'];
+//$fields = get_fields($id);
+//$desc = $fields['description'];
 
 ?>
 <?php get_header(); ?>
@@ -15,17 +15,12 @@ $desc = $fields['description'];
 </script>
 
 <section class="main-section main-section--big main-section--all-languages">
-	<h2 class="main-section__title main-section__title--big">All languages</h2>
+	<h2 class="main-section__title main-section__title--big"><?=get_the_title();?></h2>
 </section>
 <div class="description">
 	<div class="container">
 		<div class="description__wrapper">
-			<h2 class="description__title">
-				<?= $desc['title'] ?>
-			</h2>
-			<p class="description__text">
-				<?= $desc['text'] ?>
-			</p>
+            <?=get_the_content()?>
 		</div>
 	</div>
 </div>

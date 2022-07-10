@@ -4,10 +4,8 @@ $assets_url = $template_url . '/assets';
 ?>
 <?php get_header(); ?>
 <?php
-$author = get_the_author();
-print_r($author);
-$author_meta = get_the_author_meta();
-print_r($author_meta);
+$userID = $authordata->ID;
+$fields = get_fields('user_' . $userID);
 ?>
     <script>
         let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
@@ -45,14 +43,13 @@ print_r($author_meta);
             <div class="sub-info__wrapper">
                 <div class="sub-info__left full-person">
                     <p class="full-person__photo">
-                        <img src="<?= $assets_url ?>/img/meet-team-1.jpg" alt="" />
+                        <img src="<?=$fields['image']['sizes']['large'];?>" alt="" />
                     </p>
                     <p class="full-person__text">
-                        I specialised in translating English-language advertising and marketing
-                        texts.
+                        <?=$fields['sub_title'];?>
                     </p>
-                    <p class="full-person__name">Melissa Becker</p>
-                    <p class="full-person__position">Co-founder</p>
+                    <p class="full-person__name"><?=$authordata->display_name;?></p>
+                    <p class="full-person__position"><?=$fields['position'];?></p>
                 </div>
                 <div class="sub-info__right">
                     <div class="breadcrumbs">
@@ -67,41 +64,7 @@ print_r($author_meta);
                         </svg></span>
                         <span>Section 3</span>
                     </div>
-                    <h2 class="sub-info__title sub-info__title--main">
-                        A convincing marketing translation
-                    </h2>
-                    <p class="sub-info__text">
-                        A translation of a marketing or commercial text by one of our
-                        translators does exactly what it's supposed to do: win over your
-                        readers. We don't just translate a text word for word. Marketing
-                        translations require a fair amount of liberties to be taken in order to
-                        meet the needs and desires of your target audience abroad. While
-                        translating marketing texts, our translators may consult you about any
-                        cultural differences that need to be taken into account. As far as
-                        content goes, your translation will of course be identical to the source
-                        text, unless the briefing states otherwise. We are also experienced in
-                        providing SEO translations.
-                    </p>
-                    <h3 class="sub-info__title">A convincing marketing translation</h3>
-                    <p class="sub-info__text">
-                        A translation of a marketing or commercial text by one of our
-                        translators does exactly what it's supposed to do: win over your
-                        readers.
-                        <span class="sub-info__text--red">We don't just translate</span> a text
-                        word for word. Marketing translations require a fair amount of liberties
-                        to be taken in order to meet the needs and desires of your target
-                        audience abroad. While translating marketing texts, our translators may
-                        consult you about any cultural differences that need to be taken into
-                        account. As far as content goes, your translation will of course be
-                        identical to the source text, unless the briefing states otherwise. We
-                        are also experienced in providing SEO translations.
-                    </p>
-                    <h3 class="sub-info__title">A convincing marketing translation</h3>
-                    <p class="sub-info__text">
-                        Brochures, websites, catalogues, surveys, film material, presentations,
-                        marketing plans, newsletters, research papers, training materials, press
-                        releases and advertisements.
-                    </p>
+                    <?=$fields['description'];?>
                 </div>
             </div>
         </section>
