@@ -20,22 +20,24 @@ $fields = get_fields($id);
 		<div class="main-section__wrapper">
 			<div class="main-section__left main-section__left--methods">
 				<h2 class="main-section__title">
-					A Perfect translation of your texts in 7 steps
+					<?=$fields['slider']['title']?>
 				</h2>
 				<p class="main-section__description">
-					We have an average rating of 9.3 out of 10 based on over 600 ratings.
-					We will gladly help you reach more people by making your message
-					legible to them.
+                    <?=$fields['slider']['small_description']?>
 				</p>
 			</div>
 			<div class="swiper main-section__slider">
 				<div class="swiper-wrapper">
+                    <?php
+                    foreach ($fields['slider']['images'] as $image)
+                    {
+                    ?>
 					<div class="swiper-slide">
-						<img src="<?= $assets_url ?>/img/main-section-methods-1.jpg" alt="" />
+						<img src="<?=$fields['image']['url']?>" alt="" />
 					</div>
-					<div class="swiper-slide">
-						<img src="<?= $assets_url ?>/img/main-section-methods-2.jpg" alt="" />
-					</div>
+                    <?php
+                    }
+                    ?>
 				</div>
 			</div>
 		</div>
