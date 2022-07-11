@@ -4,10 +4,12 @@ add_theme_support( 'post-thumbnails' );
 add_action('after_setup_theme', function () {
     register_nav_menus([
         'header_menu_all' => 'Header menu all',
-        'header_menu_areas' => 'header_menu_areas',
-        'header_menu_certified' => 'header_menu_certified',
-        'header_menu_specialisation' => 'header_menu_specialisation',
         'header_menu_digital' => 'header_menu_digital',
+        'header_menu_specialisation' => 'header_menu_specialisation',
+        'header_menu_certified' => 'header_menu_certified',
+        'header_menu_technical_translations' => 'header_menu_technical_translations',
+        'header_menu_Languages' => 'header_menu_Languages',
+        'header_menu_areas' => 'header_menu_areas',
         'footer_menu_company' => 'footer_menu_company',
         'footer_menu_areas' => 'footer_menu_areas_of_expertise',
         'footer_menu_languages' => 'footer_menu_languages',
