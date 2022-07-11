@@ -302,13 +302,15 @@ function get_user_by_id_callback()
     if (!empty($_POST)) {
         $fields = get_fields('user_' . $_POST['id']);
         if ($fields['type_user']){
+            $users = get_users($_POST['id']);
+//            print_r($users);
             $result = array(
                 "status" => true,
                 "text" => "",
                 "data" => array(
                     "bigImageUrl" => $fields['image']['url'],
                     "description" => strip_tags($fields['small_descriptio']),
-                    "link" => get_permalink($_POST['id']),
+                    "link" => get_author_posts_url( false, $_POST['id'], $users->user_nicename)//get_permalink($_POST['id']),
                 )
             );
         }

@@ -19,82 +19,43 @@ $fields = get_fields($id);
 
 <div class="bg-wrapper">
 	<div class="bg-wrapper__img">
-		<img src="<?=$fields['block_from_subpage']['image_subpage']['sizes']['medium']?>" alt="" />
+		<img src="<?= $assets_url ?>/img/chinese-bg.png" alt="" />
 	</div>
 	<section class="translations-info">
 		<div class="container translations-info__wrapper">
 			<div class="translations-info__img">
-				<img src="<?= $assets_url ?>/img/chines-translation-info.jpg" alt="" />
+				<img src="<?=$fields['block_from_subpage']['image_subpage']['sizes']['medium']?>" alt="" />
 			</div>
 			<div class="translations-info__content">
-				<h2 class="translations-info__title">Chinese Translations</h2>
+				<h2 class="translations-info__title"><?=$fields['block_from_subpage']['title_subpage']?></h2>
 				<div class="translations-info__text">
-					Schneiders-Sprach-Service (SSS) is an owner-operated translation
-					agency based in Berlin. As a Latin America specialist,
-					translator and interpreter for Spanish and Portuguese, CEO and
-					Founder Sabine Schneider founded SSS over 30 years ago, and
-					since then has served thousands of clients in Germany and around
-					the world. With the teamwork of our robust internal team and the
-					cooperation of our global network of translators, our knowledge
-					is vast, and our reach is wide.
+                    <?=$fields['block_from_subpage']['small_description_subpage']?>
 				</div>
-				<div class="translations-info__btn btn btn--tomato">
+				<a href="<?=$fields['block_from_subpage']['link_to_subpage']?>" class="translations-info__btn btn btn--tomato">
 					Learn more
-				</div>
+				</a>
 			</div>
 		</div>
 	</section>
 	<section class="speciality">
 		<div class="speciality__left speciality__left--red">
-			<h3 class="speciality__title">Areas of Speciality</h3>
+			<h3 class="speciality__title"><?=$fields['list_block']['title_list_block']?></h3>
 			<ul class="speciality__list">
-				<li class="speciality__item speciality__item--blue">
-					travel and tourism
-				</li>
-				<li class="speciality__item speciality__item--blue">Legal</li>
-				<li class="speciality__item speciality__item--blue">
-					environment
-				</li>
-				<li class="speciality__item speciality__item--blue">chemistry</li>
-				<li class="speciality__item speciality__item--blue">
-					architecture
-				</li>
-				<li class="speciality__item speciality__item--blue">culture</li>
-				<li class="speciality__item speciality__item--blue">fmcg</li>
-				<li class="speciality__item speciality__item--blue">
-					bank and finance
-				</li>
-				<li class="speciality__item speciality__item--blue">Technical</li>
-				<li class="speciality__item speciality__item--blue">
-					Healthcare
-				</li>
+                <?php
+                foreach ($fields['list_block']['list_elements'] as $list_element){
+                    echo '<li class="speciality__item speciality__item--blue">' . $list_element['test'] . '</li>';
+                }
+                ?>
 			</ul>
 		</div>
 		<div class="speciality__right">
-			<img src="<?= $assets_url ?>/img/speciality-img.png" alt="Speciality" class="speciality__img" />
+			<img src="<?=$fields['list_block']['image_list_block']['url']?>" alt="Speciality" class="speciality__img" />
 		</div>
 	</section>
 	<div class="description description--lang">
 		<div class="container">
 			<div class="description__wrapper description__wrapper--big">
-				<h2 class="description__title description__title--start">
-					Translation Agency for Professional Chinese Translations
-				</h2>
-				<p class="description__text description__text--start">
-					Our agency is delighted to offer the professional translation of
-					language documents into or from Chinese by veteran linguists and
-					certified translators. All of our polyglots are native speakers
-					of Chinese and practice the four-eyes principle, whereby two
-					people review the work before being submitted back to you. Our
-					professional services include the translation of a wide range of
-					industries and specialist areas. In addition to German - Chinese
-					translations, frequently requested language combinations are
-					English - Chinese, French - Chinese, Spanish - Chinese, Chinese
-					- Russian, and vice versa. These are the most common language
-					combinations that our professional translators encounter on a
-					daily basis. With regard to Chinese specialty subject areas, you
-					have come to the right place!
-				</p>
+                <?=get_the_content()?>
 			</div>
 		</div>
 	</div>
@@ -118,62 +79,6 @@ $fields = get_fields($id);
 					</button>
 				</form>
 			</div>
-		</div>
-	</section>
-	<section class="contact-city">
-		<div class="container">
-			<h2 class="contact-city__title">
-				Or get in contact with any of our global locations for more
-				information!
-			</h2>
-			<ul class="contact-city__list contact-city__list--chinese">
-				<li class="contact-city__elem">
-					<p class="contact-city__photo">
-						<img src="<?= $assets_url ?>/img/city-1.jpg" alt="" />
-					</p>
-
-					<div class="contact-city__content">
-						<p class="contact-city__name">Amsterdam</p>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Address</p>
-							<p class="contact-city__adress">
-								Kabelweg 22 1014BB Amsterdam
-							</p>
-						</div>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Phone:</p>
-							<a href="tel:+0001234567890" class="contact-city__phone">+ (000) 123 -456 -78 - 90</a>
-						</div>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Email:</p>
-							<a href="mailto:info@example.com" class="contact-city__email">Info@example.com</a>
-						</div>
-					</div>
-				</li>
-				<li class="contact-city__elem">
-					<p class="contact-city__photo">
-						<img src="<?= $assets_url ?>/img/city-2.jpg" alt="" />
-					</p>
-
-					<div class="contact-city__content">
-						<p class="contact-city__name">Berlin</p>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Address</p>
-							<p class="contact-city__adress">
-								Kabelweg 22 1014BB Amsterdam
-							</p>
-						</div>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Phone:</p>
-							<a href="tel:+0001234567890" class="contact-city__phone">+ (000) 123 -456 -78 - 90</a>
-						</div>
-						<div class="contact-city__grup">
-							<p class="contact-city__subtitle">Email:</p>
-							<a href="mailto:info@example.com" class="contact-city__email">Info@example.com</a>
-						</div>
-					</div>
-				</li>
-			</ul>
 		</div>
 	</section>
 </div>
