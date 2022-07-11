@@ -36,16 +36,23 @@ function get_certificates_callback()
 {
     $return_data = array();
 
-    for ($i = 0; $i < 10; $i++) {
+    $certificates_object = new WP_Query( array(
+        'post_type' => array('certified'),
+        'posts_per_page' => -1,
+        'orderby' => 'ID'
+    ));
+
+    $certificates = $certificates_object->posts;
+    foreach ($certificates as $certificate){
+        $fields = get_fields($certificate->ID);
         $temp_array = array(
-            "id" => ($i + 1),
-            "title" => "certificates " . ($i + 1),
-            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
-            "small_description" => "The majority of assignments we do for clients are document translations. From brochures to reports and from manuals to contracts. Translation Agency Perfect has been providing these types. certificates" . ($i + 1)
+            "id" => $certificate->ID,
+            "title" => $certificate->post_title,
+            "link" => get_permalink($certificate->ID),
+            "small_description" => get_the_excerpt($certificate->ID)
         );
         array_push($return_data, $temp_array);
     }
-
 
     die(html_entity_decode(json_encode($return_data)));
 }
@@ -55,13 +62,20 @@ add_action('wp_ajax_nopriv_get_disciplines', 'get_disciplines_callback');
 function get_disciplines_callback()
 {
     $return_data = array();
+    $disciplines_object = new WP_Query( array(
+        'post_type' => array('disciplines'),
+        'posts_per_page' => -1,
+        'orderby' => 'ID'
+    ));
 
-    for ($i = 0; $i < 10; $i++) {
+    $disciplines = $disciplines_object->posts;
+    foreach ($disciplines as $discipline){
+        $fields = get_fields($discipline->ID);
         $temp_array = array(
-            "id" => ($i + 1),
-            "title" => "certificates " . ($i + 1),
-            "link" => "https://serikplusplus.github.io/Johanes--front/dist/all-languages.html",
-            "small_description" => "The majority of assignments we do for clients are document translations. From brochures to reports and from manuals to contracts. Translation Agency Perfect has been providing these types. certificates" . ($i + 1)
+            "id" => $discipline->ID,
+            "title" => $discipline->post_title,
+            "link" => get_permalink($discipline->ID),
+            "small_description" => get_the_excerpt($discipline->ID)
         );
         array_push($return_data, $temp_array);
     }

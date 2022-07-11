@@ -4,22 +4,25 @@
 */
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
+$id = get_the_ID();
+$fields = get_fields($id);
+$user_id = $fields['user']['ID'];
+$user_fields = get_fields('user_' . $user_id);
+print_r($user_fields);
 ?>
 <?php get_header(); ?>
 <script>
     let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
 </script>
-<section class="main-section main-section--contact">
+<section class="main-section main-section--contact" style="background: url(<?=$fields['header_block']['image']['url']?>)">
     <div class="container container--big container--nopaddings">
         <div class="main-section__wrapper main-section__wrapper--contact">
             <div class="main-section__left main-section__left--contact">
                 <h2 class="main-section__title">
-                    Wanna learn more<br />About Us huh?
+                    <?=$fields['header_block']['title']?>
                 </h2>
                 <p class="main-section__description main-section__description--sub-page">
-                    We have an average rating of 9.3 out of 10 based on over 600
-                    ratings. We will gladly help you reach more people by making
-                    your message legible to them.
+                    <?=$fields['header_block']['small_description']?>
                 </p>
             </div>
         </div>
@@ -31,14 +34,13 @@ $assets_url = $template_url . '/assets';
         <div class="contact-section__wrapper">
             <div class="full-person">
                 <p class="full-person__photo">
-                    <img src="<?= $assets_url ?>/img/meet-team-2.png" alt="" />
+                    <img src="<?=$user_fields['image']['url']?>" alt="" />
                 </p>
                 <p class="full-person__text">
-                    I specialised in translating English-language advertising and
-                    marketing texts.
+                    <?=$user_fields['sub_title']?>
                 </p>
-                <p class="full-person__name">Melissa Becker</p>
-                <p class="full-person__position">Co-founder</p>
+                <p class="full-person__name"><?=$fields['user']['display_name']?></p>
+                <p class="full-person__position"><?=$user_fields['position']?></p>
             </div>
             <div class="contact-section__content">
                 <div class="breadcrumbs">
@@ -71,50 +73,35 @@ $assets_url = $template_url . '/assets';
     <section class="contact-city">
         <div class="container">
             <ul class="contact-city__list">
+                <?php
+                foreach ($fields['city_contact'] as $city){
+                    print_r($city);
+                ?>
                 <li class="contact-city__elem">
                     <p class="contact-city__photo">
-                        <img src="<?= $assets_url ?>/img/city-1.jpg" alt="" />
+                        <img src="<?=$city['image']['url']?>" alt="" />
                     </p>
                     <div class="contact-city__content">
-                        <p class="contact-city__name">Amsterdam</p>
+                        <p class="contact-city__name"><?=$city['city']?></p>
                         <div class="contact-city__grup">
                             <p class="contact-city__subtitle">Address</p>
                             <p class="contact-city__adress">
-                                Kabelweg 22 1014BB Amsterdam
+                                <?=$city['location']?>
                             </p>
                         </div>
                         <div class="contact-city__grup">
                             <p class="contact-city__subtitle">Phone:</p>
-                            <a href="tel:+0001234567890" class="contact-city__phone">+ (000) 123 -456 -78 - 90</a>
+                            <a href="tel:<?=$city['phone']?>" class="contact-city__phone"><?=$city['phone']?></a>
                         </div>
                         <div class="contact-city__grup">
                             <p class="contact-city__subtitle">Email:</p>
-                            <a href="mailto:info@example.com" class="contact-city__email">Info@example.com</a>
+                            <a href="mailto:<?=$city['email']?>" class="contact-city__email"><?=$city['email']?></a>
                         </div>
                     </div>
                 </li>
-                <li class="contact-city__elem">
-                    <p class="contact-city__photo">
-                        <img src="<?= $assets_url ?>/img/city-2.jpg" alt="" />
-                    </p>
-                    <div class="contact-city__content">
-                        <p class="contact-city__name">Berlin</p>
-                        <div class="contact-city__grup">
-                            <p class="contact-city__subtitle">Address</p>
-                            <p class="contact-city__adress">
-                                Kabelweg 22 1014BB Amsterdam
-                            </p>
-                        </div>
-                        <div class="contact-city__grup">
-                            <p class="contact-city__subtitle">Phone:</p>
-                            <a href="tel:+0001234567890" class="contact-city__phone">+ (000) 123 -456 -78 - 90</a>
-                        </div>
-                        <div class="contact-city__grup">
-                            <p class="contact-city__subtitle">Email:</p>
-                            <a href="mailto:info@example.com" class="contact-city__email">Info@example.com</a>
-                        </div>
-                    </div>
-                </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
     </section>

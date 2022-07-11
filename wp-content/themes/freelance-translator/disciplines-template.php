@@ -4,9 +4,9 @@
 */
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
-$id = get_the_ID();
-$fields = get_fields($id);
-$desc = $fields['description'];
+//$id = get_the_ID();
+//$fields = get_fields($id);
+//$desc = $fields['description'];
 ?>
 <?php get_header(); ?>
 
@@ -21,12 +21,7 @@ $desc = $fields['description'];
 <div class="description">
 	<div class="container">
 		<div class="description__wrapper">
-			<h2 class="description__title">
-				<?= $desc['title'] ?>
-			</h2>
-			<p class="description__text">
-				<?= $desc['text'] ?>
-			</p>
+            <?=get_the_content()?>
 		</div>
 	</div>
 </div>
