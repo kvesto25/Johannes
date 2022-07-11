@@ -7,7 +7,7 @@ $assets_url = $template_url . '/assets';
 $id = get_the_ID();
 $fields = get_fields($id);
 
-print_r($fields);
+//print_r($fields);
 
 ?>
 <?php get_header(); ?>
@@ -44,125 +44,26 @@ print_r($fields);
 
 <div id="app">
 	<section class="steps">
+        <?php
+        $i = 0;
+        foreach ($fields['step'] as $step){
+            $i++;
+        ?>
 		<div class="step">
 			<div class="step__img step__img--cylinder">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
+				<img src="<?=$step['image']['url']?>" alt="Step 1" />
 			</div>
 			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
+				<p class="step__number">STEP <?=$i?></p>
+				<h3 class="step__title"><?=$step['title']?></h3>
 				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
+                    <?=$step['description']?>
 				</p>
 			</div>
 		</div>
-		<div class="step">
-			<div class="step__img">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
-		<div class="step">
-			<div class="step__img">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
-		<div class="step">
-			<div class="step__img">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
-		<div class="step">
-			<div class="step__img">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
-		<div class="step">
-			<div class="step__img">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
-		<div class="step">
-			<div class="step__img step__img--cylinder">
-				<img src="<?= $assets_url ?>/img/methods-1.jpg" alt="Step 1" />
-			</div>
-			<div class="step__content">
-				<p class="step__number">STEP 1</p>
-				<h3 class="step__title">Translation rates</h3>
-				<p class="step__text">
-					A translation of a marketing or commercial text by one of our
-					translators does exactly what it's supposed to do: win over your
-					readers. We don't just translate a text word for word. Marketing
-					translations require a fair amount of liberties to be taken in order to
-					meet the needs and desires of your target audience abroad.
-					<a href="" class="step__link">While translating marketing texts.</a>
-				</p>
-			</div>
-		</div>
+        <?php
+        }
+        ?>
 	</section>
 
 </div>
