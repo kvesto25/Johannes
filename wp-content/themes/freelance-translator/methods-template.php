@@ -33,7 +33,7 @@ $fields = get_fields($id);
                     {
                     ?>
 					<div class="swiper-slide">
-						<img src="<?=$fields['image']['url']?>" alt="" />
+						<img src="<?=$image['image']['url']?>" alt="" />
 					</div>
                     <?php
                     }
