@@ -12,22 +12,27 @@ $fields = get_fields($id);
         let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
     </script>
 
+
+
     <section class="main-section main-section--sub-page">
         <div class="container container--big container--nopaddings">
             <div class="main-section__wrapper main-section__wrapper--sub-page">
                 <div class="main-section__left main-section__left--sub-page">
                     <h2 class="main-section__title">
-                        <?=$fields['header_block']['title']?>
+                        Wanna learn more <br />
+                        About Us huh?
                     </h2>
                     <p class="main-section__description main-section__description--sub-page">
-                        <?=$fields['header_block']['small_description']?>
+                        We have an average rating of 9.3 out of 10 based on over 600 ratings.
+                        We will gladly help you reach more people by making your message
+                        legible to them.
                     </p>
                     <div class="main-section__contact">
-                        <a href="<?=$fields['header_block']['link']['link_url']?>" class="btn btn--black"><?=$fields['header_block']['link']['link_text']?></a>
+                        <button class="btn btn--black">GET QUOATION</button>
                         <span>Or</span>
                         <p>
                             Call us:
-                            <a class="main-section__call" href="tel:<?=$fields['header_block']['phone']?>"><?=$fields['header_block']['phone']?></a>
+                            <a class="main-section__call" href="tel:+01234567890">+0 (123) 456 78 90</a>
                         </p>
                     </div>
                 </div>
