@@ -74,36 +74,42 @@ $assets_url = $template_url . '/assets';
                     <nav class="main-nav">
                         <ul class="main-nav__list">
                             <li class="main-nav__elem">
-                                <a href="#" class="main-nav__link main-nav__link--collapce" id="services">Our Services(test)</a>
+                                <a href="#" class="main-nav__link main-nav__link--collapce" id="services">All Services</a>
                                 <div class="mega-menu">
                                     <div class="container">
                                         <div class="mega-menu__wrapper">
                                             <div class="service">
+                                                <h4 class="service__title service__title--digital">
+                                                    Digital
+                                                </h4>
+                                                <ul class="service__list">
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_digital');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                            <div class="service">
                                                 <h3 class="service__title service__title--cog">
-                                                    Areas of Expertise
+                                                    Technical Translations
                                                 </h3>
                                                 <ul class="service__list">
-                                                    <li class="service__elem">
-                                                        <a href="">Document Translations</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Financial Translations</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Medical Translations</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Legal Translations</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Marketing Translations</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Urgent Translations</a>
-                                                    </li>
-                                                    <li class="service__elem service__elem--all">
-                                                        <a href="">All Areas of Expertise</a>
-                                                    </li>
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_technical_translations');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
 
@@ -112,25 +118,16 @@ $assets_url = $template_url . '/assets';
                                                     Certified Translations
                                                 </h3>
                                                 <ul class="service__list">
-                                                    <li class="service__elem">
-                                                        <a href="">Birth Certificate</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Marriage Certificate</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">School Diploma</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Contracts</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Other Documents & Certificates</a>
-                                                    </li>
-
-                                                    <li class="service__elem service__elem--all">
-                                                        <a href="">All Certified Translations</a>
-                                                    </li>
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_certified');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
                                             <div class="service">
@@ -138,43 +135,66 @@ $assets_url = $template_url . '/assets';
                                                     Specialisation
                                                 </h3>
                                                 <ul class="service__list">
-                                                    <li class="service__elem">
-                                                        <a href="">Skilled Immigration</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Professional Recognition</a>
-                                                    </li>
-                                                    <li class="service__elem service__elem--all">
-                                                        <a href="">All Specialisations</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="service">
-                                                <h4 class="service__title service__title--digital">
-                                                    Digital
-                                                </h4>
-                                                <ul class="service__list">
-                                                    <li class="service__elem"><a href="">Blogs</a></li>
-                                                    <li class="service__elem"><a href=" ">SEO</a></li>
-                                                    <li class="service__elem">
-                                                        <a href="">Websites</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">E-Commerce</a>
-                                                    </li>
-                                                    <li class="service__elem">
-                                                        <a href="">Others</a>
-                                                    </li>
-                                                    <li class="service__elem service__elem--all">
-                                                        <a href="">All Services</a>
-                                                    </li>
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_specialisation');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-
+                            <li class="main-nav__elem">
+                                <a href="#" class="main-nav__link main-nav__link--collapce">About Us</a>
+                                <div class="mega-menu">
+                                    <div class="container">
+                                        <div class="mega-menu__wrapper">
+                                            <div class="service">
+                                                <h4 class="service__title service__title--about"><a href="<?=get_home_url().'/about-us/'?>">About Us</a></h4>
+                                                <ul class="service__list">
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_about_as');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </div>
+<!--                                            <div class="service">-->
+<!--                                                <h4 class="service__title service__title--magazine">Magazine</h4>-->
+<!--                                                <ul class="service__list">-->
+<!--                                                    <li class="service__elem">-->
+<!--                                                        <a href="">Featured Articles</a>-->
+<!--                                                    </li>-->
+<!--                                                    <li class="service__elem">-->
+<!--                                                        <a href="">Featured Articles</a>-->
+<!--                                                    </li>-->
+<!--                                                    <li class="service__elem">-->
+<!--                                                        <a href="">Featured Articles</a>-->
+<!--                                                    </li>-->
+<!--                                                    <li class="service__elem">-->
+<!--                                                        <a href="">Featured Articles</a>-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                            </div>-->
+                                            <div class="mega-menu__grup mega-menu__grup--right">
+                                                <a href="<?=get_home_url().'/contact/'?>" class="btn btn--large btn--blue">Contact us</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <?php
                             $menu_items = get_menu_items('header_menu_all');
                             foreach ($menu_items as $item) {
@@ -189,7 +209,7 @@ $assets_url = $template_url . '/assets';
                     </nav>
                     <div class="user-nav">
                         <button class="btn btn--large btn--blue">Get A Quote</button>
-                        <button class="btn-lang">
+                        <button class="btn-lang" style="display: none">
                             <img src="<?= $assets_url ?>/img/flag-ger.png" alt="" />
                             <ul class="lang-list">
                                 <li class="lang-list__item">
