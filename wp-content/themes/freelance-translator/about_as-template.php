@@ -12,9 +12,8 @@ $assets_url = $template_url . '/assets';
 <?php
 //$users = get_users();
 //print_r($users);
-echo $id = get_the_ID();
+$id = get_the_ID();
 $fields = get_fields($id);
-print_r($fields);
 ?>
 <section class="main-section main-section--about-us">
     <div class="container container--big container--nopaddings">
