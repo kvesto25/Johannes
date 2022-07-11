@@ -157,7 +157,9 @@ $assets_url = $template_url . '/assets';
                                     <div class="container">
                                         <div class="mega-menu__wrapper">
                                             <div class="service">
-                                                <h4 class="service__title service__title--about"><a href="<?=get_home_url().'/about-us/'?>">About Us</a></h4>
+                                                <h4 class="service__title service__title--about">
+                                                    <a href="<?=get_home_url().'/about-us/'?>">About Us</a>
+                                                </h4>
                                                 <ul class="service__list">
                                                     <?php
                                                     $menu_items = get_menu_items('header_menu_about_as');
@@ -208,7 +210,7 @@ $assets_url = $template_url . '/assets';
                         </ul>
                     </nav>
                     <div class="user-nav">
-                        <button class="btn btn--large btn--blue">Get A Quote</button>
+                        <button class="btn btn--large btn--blue"><a href="<?=get_home_url().'/about-us/'?>">Get A Quote</a></button>
                         <button class="btn-lang" style="display: none">
                             <img src="<?= $assets_url ?>/img/flag-ger.png" alt="" />
                             <ul class="lang-list">
