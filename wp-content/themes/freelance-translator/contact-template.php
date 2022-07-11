@@ -8,7 +8,6 @@ $id = get_the_ID();
 $fields = get_fields($id);
 $user_id = $fields['user']['ID'];
 $user_fields = get_fields('user_' . $user_id);
-print_r($user_fields);
 ?>
 <?php get_header(); ?>
 <script>
@@ -75,7 +74,6 @@ print_r($user_fields);
             <ul class="contact-city__list">
                 <?php
                 foreach ($fields['city_contact'] as $city){
-                    print_r($city);
                 ?>
                 <li class="contact-city__elem">
                     <p class="contact-city__photo">
