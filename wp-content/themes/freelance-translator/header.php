@@ -204,7 +204,9 @@ $assets_url = $template_url . '/assets';
                                                     $menu_items = get_menu_items('header_menu_Languages');
                                                     $i = 0;
                                                     foreach ($menu_items as $item) {
-                                                        if ($i > 5) break
+                                                        if ($i > 5){
+                                                            break;
+                                                        }
                                                         $i++;
                                                         ?>
                                                         <li class="service__elem">
