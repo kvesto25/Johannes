@@ -65,6 +65,10 @@ $assets_url = $template_url . '/assets';
 </head>
 
 <body>
+<?php
+$menu_items = get_menu_items('header_menu_areas');
+print_r($menu_items)
+?>
     <div class="container container--big">
         <header class="main-header">
             <div class="main-header__wrapper">
