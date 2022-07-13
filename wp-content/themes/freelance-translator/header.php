@@ -197,7 +197,7 @@ $assets_url = $template_url . '/assets';
                                         <div class="mega-menu__wrapper">
                                             <div class="service">
                                                 <h4 class="service__title service__title--about">
-                                                    <a href="<?=get_permalink(261);?>?>">Lanuages</a>
+                                                    <a href="<?=get_permalink(261);?>">Lanuages</a>
                                                 </h4>
                                                 <ul class="service__list">
                                                     <?php
@@ -205,6 +205,11 @@ $assets_url = $template_url . '/assets';
                                                     $i = 0;
                                                     foreach ($menu_items as $item) {
                                                         if ($i > 5){
+                                                            ?>
+                                                            <li class="service__elem">
+                                                                <a href="<?=get_permalink(261);?>">All Languages</a>
+                                                            </li>
+                                                            <?php
                                                             break;
                                                         }
                                                         $i++;
