@@ -173,23 +173,6 @@ $assets_url = $template_url . '/assets';
                                                     ?>
                                                 </ul>
                                             </div>
-<!--                                            <div class="service">-->
-<!--                                                <h4 class="service__title service__title--magazine">Magazine</h4>-->
-<!--                                                <ul class="service__list">-->
-<!--                                                    <li class="service__elem">-->
-<!--                                                        <a href="">Featured Articles</a>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="service__elem">-->
-<!--                                                        <a href="">Featured Articles</a>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="service__elem">-->
-<!--                                                        <a href="">Featured Articles</a>-->
-<!--                                                    </li>-->
-<!--                                                    <li class="service__elem">-->
-<!--                                                        <a href="">Featured Articles</a>-->
-<!--                                                    </li>-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
                                             <div class="mega-menu__grup mega-menu__grup--right">
                                                 <a href="<?=get_home_url().'/contact/'?>" class="btn btn--large btn--blue">Contact us</a>
                                             </div>
@@ -207,6 +190,35 @@ $assets_url = $template_url . '/assets';
                             <?php
                             }
                             ?>
+                            <li class="main-nav__elem">
+                                <a href="<?=get_permalink(261);?>" class="main-nav__link main-nav__link--collapce">Lanuages</a>
+                                <div class="mega-menu">
+                                    <div class="container">
+                                        <div class="mega-menu__wrapper">
+                                            <div class="service">
+                                                <h4 class="service__title service__title--about">
+                                                    <a href="<?=get_permalink(261);?>?>">Lanuages</a>
+                                                </h4>
+                                                <ul class="service__list">
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_Languages');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </div>
+                                            <div class="mega-menu__grup mega-menu__grup--right">
+                                                <a href="<?=get_home_url().'/contact/'?>" class="btn btn--large btn--blue">Contact us</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                     <div class="user-nav">
