@@ -202,7 +202,10 @@ $assets_url = $template_url . '/assets';
                                                 <ul class="service__list">
                                                     <?php
                                                     $menu_items = get_menu_items('header_menu_Languages');
+                                                    $i = 0;
                                                     foreach ($menu_items as $item) {
+                                                        if ($i > 5) break
+                                                        $i++;
                                                         ?>
                                                         <li class="service__elem">
                                                             <a href="<?= $item->url ?>"><?= $item->title ?></a>
@@ -211,9 +214,6 @@ $assets_url = $template_url . '/assets';
                                                     }
                                                     ?>
                                                 </ul>
-                                            </div>
-                                            <div class="mega-menu__grup mega-menu__grup--right">
-                                                <a href="<?=get_home_url().'/contact/'?>" class="btn btn--large btn--blue">Contact us</a>
                                             </div>
                                         </div>
                                     </div>
