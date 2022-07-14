@@ -4,6 +4,8 @@
 */
 $template_url = get_template_directory_uri();
 $assets_url = $template_url . '/assets';
+$id = get_the_ID();
+$fields = get_fields($id);
 ?>
 <?php get_header(); ?>
 
@@ -11,25 +13,22 @@ $assets_url = $template_url . '/assets';
     let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
 </script>
 
-<section class="main-section main-section--sub-page">
+<section class="main-section main-section--sub-page" style="background: url("<?=$fields['header_block']['image']['url']?>")">
     <div class="container container--big container--nopaddings">
         <div class="main-section__wrapper main-section__wrapper--sub-page">
             <div class="main-section__left main-section__left--sub-page">
                 <h2 class="main-section__title">
-                    Wanna learn more <br />
-                    About Us huh?
+                    <?=$fields['header_block']['title']?>
                 </h2>
                 <p class="main-section__description main-section__description--sub-page">
-                    We have an average rating of 9.3 out of 10 based on over 600 ratings.
-                    We will gladly help you reach more people by making your message
-                    legible to them.
+                    <?=$fields['header_block']['small_description']?>
                 </p>
                 <div class="main-section__contact">
-                    <button class="btn btn--black">GET QUOATION</button>
+                    <a href="<?=$fields['header_block']['link']['link_url']?>" class="btn btn--black"><?=$fields['header_block']['link']['link_text']?></a>
                     <span>Or</span>
                     <p>
                         Call us:
-                        <a class="main-section__call" href="tel:+01234567890">+0 (123) 456 78 90</a>
+                        <a class="main-section__call" href="tel:<?=$fields['header_block']['phone']?>"><?=$fields['header_block']['phone']?></a>
                     </p>
                 </div>
             </div>
@@ -43,14 +42,13 @@ $assets_url = $template_url . '/assets';
         <div class="sub-info__wrapper">
             <div class="sub-info__left full-person">
                 <p class="full-person__photo">
-                    <img src="<?= $assets_url ?>/img/meet-team-1.jpg" alt="" />
+                    <img src="<?=$fields['left_block']['image']['url']?>" alt="" />
                 </p>
                 <p class="full-person__text">
-                    I specialised in translating English-language advertising and marketing
-                    texts.
+                    <?=$fields['left_block']['small_description']?>
                 </p>
-                <p class="full-person__name">Melissa Becker</p>
-                <p class="full-person__position">Co-founder</p>
+                <p class="full-person__name"><?=get_the_title();?></p>
+                <p class="full-person__position"><?=$fields['left_block']['sub_title']?></p>
             </div>
             <div class="sub-info__right">
                 <div class="breadcrumbs">
