@@ -331,7 +331,7 @@ add_action('wp_ajax_get_user_by_id', 'get_user_by_id_callback');
 add_action('wp_ajax_nopriv_get_user_by_id', 'get_user_by_id_callback');
 function get_user_by_id_callback()
 {
-//    get_userdata( $user_id );
+    $users = get_userdata( $_POST['id'] );
     $result = array(
         "status" => false,
         "text" => "Немаэ даних",
