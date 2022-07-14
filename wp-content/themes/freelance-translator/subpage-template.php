@@ -73,7 +73,9 @@ $fields = get_fields($id);
                     </a>
                     <span><?=get_the_title()?></span>
                 </div>
-                <?=get_the_content();?>
+                <div class="sub-info__right-content">
+                    <?=get_the_content();?>
+                </div>
             </div>
         </div>
     </section>
