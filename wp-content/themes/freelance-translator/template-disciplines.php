@@ -26,7 +26,10 @@ $assets_url = $template_url . '/assets';
     <div id="app">
         <div class="information-cards-section">
             <div class="container information-cards-section__wrapper big">
-
+                <?php
+                $pages = get_page_children(get_the_ID());
+                print_r($pages);
+                ?>
                 <div class="information-card big">
                     <div class="information-card__header">
                         <div class="information-card__info">
