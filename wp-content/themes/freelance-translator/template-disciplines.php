@@ -27,24 +27,27 @@ $assets_url = $template_url . '/assets';
         <div class="information-cards-section">
             <div class="container information-cards-section__wrapper big">
                 <?php
-                $pages = get_page_children(get_the_ID());
-                print_r($pages);
+                $all_pages = ( new WP_Query() )->query( [
+                    'post_type' => 'page',
+                    'posts_per_page' => -1
+                ] );
+                $pages = get_page_children(get_the_ID(), $all_pages);
+                foreach ($pages as $page){
                 ?>
                 <div class="information-card big">
                     <div class="information-card__header">
                         <div class="information-card__info">
-                            <h3 class="information-card__title big">Contract Translation</h3>
-                            <a href="http://johannes.taras-lavrin.online/certified/contract-translation/" class="information-card__link">To page</a>
+                            <h3 class="information-card__title big"><?=$page->post_title;?></h3>
+                            <a href="<?=get_permalink($page->ID);?>" class="information-card__link">To page</a>
                         </div>
                     </div>
                     <p class="information-card__text">
-                        Foreign-language employment contract that you need to sign before starting work? Have a property
-                        purchase contract or other documents that have been drawn up by a notary in a written form?
-                        Moving into a new apartment and require your tenancy agreement translated so you can better
-                        understand your rights and obligations? This is our specialty!
+                        <?=$page->post_excerpt;?>
                     </p>
                 </div>
-
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>
