@@ -13,7 +13,7 @@ $fields = get_fields($id);
     let ajax_url = "<?= admin_url('admin-ajax.php'); ?>";
 </script>
 
-<section class="main-section main-section--sub-page" style="background: url("<?=$fields['header_block']['image']['url']?>")">
+<section class="main-section main-section--sub-page" style="background: url(<?=$fields['header_block']['image']['url']?>)">
     <div class="container container--big container--nopaddings">
         <div class="main-section__wrapper main-section__wrapper--sub-page">
             <div class="main-section__left main-section__left--sub-page">
