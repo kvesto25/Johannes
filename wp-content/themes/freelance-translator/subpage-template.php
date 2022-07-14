@@ -65,7 +65,6 @@ $fields = get_fields($id);
                     $link = get_permalink($parent_id);
                     $title = get_the_title($parent_id);
                     ?>
-
                     <a href="<?=$link;?>"><?=$title?>
                         <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
@@ -73,9 +72,7 @@ $fields = get_fields($id);
                     </a>
                     <span><?=get_the_title()?></span>
                 </div>
-                <div class="sub-info__right-content">
-                    <?=get_the_content();?>
-                </div>
+                <?=get_the_content();?>
             </div>
         </div>
     </section>
