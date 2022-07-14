@@ -61,7 +61,9 @@ $fields = get_fields($id);
                     </a>
                     <?php
                     $post = get_post( $id );
-                    echo $post->post_parent;
+                    $parent_id = $post->post_parent;
+                    echo $link = get_permalink($parent_id);
+                    echo $title = get_the_title($parent_id);
                     ?>
                     <span><?=get_the_title()?></span>
                 </div>
