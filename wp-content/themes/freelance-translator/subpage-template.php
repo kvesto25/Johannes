@@ -62,9 +62,14 @@ $fields = get_fields($id);
                     <?php
                     $post = get_post( $id );
                     $parent_id = $post->post_parent;
-                    echo $link = get_permalink($parent_id);
-                    echo $title = get_the_title($parent_id);
+                    $link = get_permalink($parent_id);
+                    $title = get_the_title($parent_id);
                     ?>
+                    <a href="<?=$link;?>"><?=$title?>
+                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
+                        </svg>
+                    </a>
                     <span><?=get_the_title()?></span>
                 </div>
                 <?=get_the_content();?>
