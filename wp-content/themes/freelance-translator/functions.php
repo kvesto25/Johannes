@@ -349,7 +349,8 @@ function get_user_by_id_callback()
                 "data" => array(
                     "bigImageUrl" => $fields['image']['url'],
                     "description" => strip_tags($fields['small_descriptio']),
-                    "link" => get_author_posts_url( false, $_POST['id'], $users->user_nicename)//get_permalink($_POST['id']),
+                    "link" => get_author_posts_url( $_POST['id'], $users->user_nicename),
+//                    "test" => $users
                 )
             );
         }
