@@ -66,8 +66,8 @@ $assets_url = $template_url . '/assets';
 
 <body>
 <?php
-$menu_items = get_menu_items_sort('header_menu_areas');
-print_r($menu_items)
+//$menu_items = get_menu_items_sort('header_menu_areas');
+//print_r($menu_items)
 ?>
     <div class="container container--big">
         <header class="main-header">

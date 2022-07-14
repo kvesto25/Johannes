@@ -33,39 +33,40 @@ function get_menu_items($name)
     return $out;
 }
 
-function get_menu_items_sort($name)
-{
-    // language is automatically considered in this call
-    $locations = get_nav_menu_locations();
-
-    $out = array();
-    if (!empty($locations[$name])) {
-        $menu = wp_get_nav_menu_object($locations[$name]);
-        $out = wp_get_nav_menu_items($menu->term_id, ['update_post_term_cache' => false]);
-    }
-    $new_array = array();
-    $temp = array();
-    foreach ($out as $elem){
-        if($elem['menu_order'] == 2){
-            $elem['child'] = array();
-            $temp[$elem['ID']] = $elem;
-        }
-    }
-    foreach ($out as $elem){
-        if($elem['menu_order'] == 3){
-            array_push($temp[$elem['menu_item_parent']]['child'], $elem);
-        }
-        if($elem['menu_order'] == 1){
-            $elem['child'] = array();
-            $new_array[$elem['ID']] = $elem;
-        }
-    }
-    foreach ($temp as $el){
-        array_push($new_array[$el['menu_item_parent']]['child'], $el);
-    }
-
-    return $new_array;
-}
+//function get_menu_items_sort($name)
+//{
+//    // language is automatically considered in this call
+//    $locations = get_nav_menu_locations();
+//
+//    $out = array();
+//    if (!empty($locations[$name])) {
+//        $menu = wp_get_nav_menu_object($locations[$name]);
+//        $out = wp_get_nav_menu_items($menu->term_id, ['update_post_term_cache' => false]);
+//    }
+//    $out = json_decode(json_encode($out), true);
+//    $new_array = array();
+//    $temp = array();
+//    foreach ($out as $elem){
+//        if($elem['menu_order'] == 2){
+//            $elem['child'] = array();
+//            array_push($temp, $elem);
+//        }
+//    }
+//    foreach ($out as $elem){
+//        if($elem['menu_order'] == 3){
+//            array_push($temp[$elem['menu_item_parent']]['child'], $elem);
+//        }
+//        if($elem['menu_order'] == 1){
+//            $elem['child'] = array();
+//            $new_array[$elem['ID']] = $elem;
+//        }
+//    }
+//    foreach ($temp as $el){
+//        array_push($new_array[$el['menu_item_parent']]['child'], $el);
+//    }
+//
+//    return $new_array;
+//}
 
 add_action('wp_ajax_get_certificates', 'get_certificates_callback');
 add_action('wp_ajax_nopriv_get_certificates', 'get_certificates_callback');
