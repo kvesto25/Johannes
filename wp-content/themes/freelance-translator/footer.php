@@ -9,8 +9,11 @@ $assets_url = $template_url . '/assets';
             <h4 class="main-footer__col-title">Company</h4>
             <ul class="main-footer__list">
                 <?php
-                $menu_items = get_menu_items('footer_menu_company');
+                $menu_items = get_menu_items('header_menu_about_as');
+                $count = 0;
                 foreach ($menu_items as $item) {
+                    if($count > 4) break;
+                    $count++
                 ?>
                     <li class="main-footer__elem">
                         <a href="<?= $item->url ?>" class="main-footer__link"><?= $item->title ?></a>
@@ -24,8 +27,11 @@ $assets_url = $template_url . '/assets';
             <h4 class="main-footer__col-title">Areas of expertise</h4>
             <ul class="main-footer__list">
                 <?php
-                $menu_items = get_menu_items('footer_menu_areas');
+                $menu_items = get_menu_items('header_menu_technical_translations');
+                $count = 0;
                 foreach ($menu_items as $item) {
+                    if($count > 4) break;
+                    $count++
                 ?>
                     <li class="main-footer__elem">
                         <a href="<?= $item->url ?>" class="main-footer__link"><?= $item->title ?></a>
@@ -39,8 +45,11 @@ $assets_url = $template_url . '/assets';
             <h4 class="main-footer__col-title">Languages</h4>
             <ul class="main-footer__list">
                 <?php
-                $menu_items = get_menu_items('footer_menu_languages');
+                $menu_items = get_menu_items('header_menu_Languages');
+                $count = 0;
                 foreach ($menu_items as $item) {
+                    if($count > 4) break;
+                    $count++
                 ?>
                     <li class="main-footer__elem">
                         <a href="<?= $item->url ?>" class="main-footer__link"><?= $item->title ?></a>
@@ -55,7 +64,10 @@ $assets_url = $template_url . '/assets';
             <ul class="main-footer__list">
                 <?php
                 $menu_items = get_menu_items('footer_menu_locations');
+                $count = 0;
                 foreach ($menu_items as $item) {
+                    if($count > 4) break;
+                    $count++
                 ?>
                     <li class="main-footer__elem">
                         <a href="<?= $item->url ?>" class="main-footer__link"><?= $item->title ?></a>
