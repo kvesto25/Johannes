@@ -2505,7 +2505,7 @@ button {
 		padding-left: 0;
 	}
 }
-.sub-info__title {
+.sub-info__right-content h3 {
 	margin: 0;
 	margin-bottom: 25px;
 	color: #f24c4c;
@@ -2514,35 +2514,39 @@ button {
 	line-height: 36px;
 }
 @media screen and (max-width: 776px) {
-	.sub-info__title {
+	.sub-info__right-content h3 {
 		font-size: 18px;
 		line-height: 24px;
 	}
 }
-.sub-info__title--main {
+.sub-info__right-content h2 {
 	font-weight: 700;
 	font-size: 33px;
 	line-height: 50px;
+	margin: 0;
+	margin-bottom: 25px;
+	color: #f24c4c;
 }
 @media screen and (max-width: 776px) {
-	.sub-info__title--main {
+	.sub-info__right-content h2 {
 		font-size: 22px;
 		line-height: 34px;
 	}
 }
-.sub-info__text {
+.sub-info__right-content p {
 	margin: 0;
 	margin-bottom: 60px;
 	font-size: 16px;
 	line-height: 180%;
 }
 @media screen and (max-width: 776px) {
-	.sub-info__text {
+	.sub-info__right-content p {
 		margin-bottom: 20px;
 		font-size: 14px;
 	}
 }
-.sub-info__text--red {
+.sub-info__right-content span,
+.sub-info__right-content a {
 	color: #f24c4c;
 	text-decoration: underline;
 }
@@ -3547,7 +3551,7 @@ button {
 		padding-top: 80px;
 	}
 }
-.translation-rates__title {
+.translation-rates h3 {
 	max-width: 565px;
 	margin: 0;
 	margin-bottom: 25px;
@@ -3557,35 +3561,39 @@ button {
 	line-height: 36px;
 }
 @media screen and (max-width: 776px) {
-	.translation-rates__title {
+	.translation-rates h3 {
 		font-size: 18px;
 		line-height: 24px;
 	}
 }
-.translation-rates__title--main {
+.translation-rates h2 {
 	font-weight: 700;
 	font-size: 33px;
 	line-height: 50px;
+	max-width: 565px;
+	margin: 0;
+	margin-bottom: 25px;
+	color: #f24c4c;
 }
 @media screen and (max-width: 776px) {
-	.translation-rates__title--main {
+	.translation-rates h2 {
 		font-size: 22px;
 		line-height: 34px;
 	}
 }
-.translation-rates__text {
+.translation-rates p {
 	margin: 0;
 	margin-bottom: 60px;
 	font-size: 16px;
 	line-height: 180%;
 }
 @media screen and (max-width: 776px) {
-	.translation-rates__text {
+	.translation-rates p {
 		margin-bottom: 20px;
 		font-size: 14px;
 	}
 }
-.translation-rates__text--red {
+.translation-rates a {
 	color: #f24c4c;
 	text-decoration: underline;
 }
