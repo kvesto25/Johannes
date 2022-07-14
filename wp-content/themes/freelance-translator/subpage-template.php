@@ -59,6 +59,10 @@ $fields = get_fields($id);
                             <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
                         </svg>
                     </a>
+                    <?php
+                    $post = get_post( $id );
+                    echo $post->post_parent;
+                    ?>
                     <span><?=get_the_title()?></span>
                 </div>
                 <?=get_the_content();?>
