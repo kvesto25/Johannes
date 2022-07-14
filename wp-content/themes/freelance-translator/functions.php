@@ -341,8 +341,8 @@ function get_user_by_id_callback()
     if (!empty($_POST)) {
         $fields = get_fields('user_' . $_POST['id']);
         if ($fields['type_user']){
-            $users = get_users($_POST['id']);
-//            print_r($users);
+//            $users = get_users($_POST['id']);
+////            print_r($users);
             $result = array(
                 "status" => true,
                 "text" => "",
