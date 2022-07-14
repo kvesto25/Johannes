@@ -65,41 +65,9 @@ $assets_url = $template_url . '/assets';
                         </svg></span>
                     <span>Section 3</span>
                 </div>
-                <h2 class="sub-info__title sub-info__title--main">
-                    A convincing marketing translation
-                </h2>
-                <p class="sub-info__text">
-                    A translation of a marketing or commercial text by one of our
-                    translators does exactly what it's supposed to do: win over your
-                    readers. We don't just translate a text word for word. Marketing
-                    translations require a fair amount of liberties to be taken in order to
-                    meet the needs and desires of your target audience abroad. While
-                    translating marketing texts, our translators may consult you about any
-                    cultural differences that need to be taken into account. As far as
-                    content goes, your translation will of course be identical to the source
-                    text, unless the briefing states otherwise. We are also experienced in
-                    providing SEO translations.
-                </p>
-                <h3 class="sub-info__title">A convincing marketing translation</h3>
-                <p class="sub-info__text">
-                    A translation of a marketing or commercial text by one of our
-                    translators does exactly what it's supposed to do: win over your
-                    readers.
-                    <span class="sub-info__text--red">We don't just translate</span> a text
-                    word for word. Marketing translations require a fair amount of liberties
-                    to be taken in order to meet the needs and desires of your target
-                    audience abroad. While translating marketing texts, our translators may
-                    consult you about any cultural differences that need to be taken into
-                    account. As far as content goes, your translation will of course be
-                    identical to the source text, unless the briefing states otherwise. We
-                    are also experienced in providing SEO translations.
-                </p>
-                <h3 class="sub-info__title">A convincing marketing translation</h3>
-                <p class="sub-info__text">
-                    Brochures, websites, catalogues, surveys, film material, presentations,
-                    marketing plans, newsletters, research papers, training materials, press
-                    releases and advertisements.
-                </p>
+                <<div class="sub-info__right-content">
+                    <?=get_the_content();?>
+                </div>
             </div>
         </div>
     </section>

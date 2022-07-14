@@ -64,7 +64,9 @@ $fields = get_fields('user_' . $userID);
                         </svg></span>
                         <span>Section 3</span>
                     </div>
-                    <?=$fields['description'];?>
+                    <div class="sub-info__right-content">
+                        <?=$fields['description'];?>
+                    </div>
                 </div>
             </div>
         </section>
