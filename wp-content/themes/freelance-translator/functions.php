@@ -9,6 +9,7 @@ add_action('after_setup_theme', function () {
         'header_menu_specialisation' => 'header_menu_specialisation',
         'header_menu_certified' => 'header_menu_certified',
         'header_menu_about_as' => 'header_menu_about_as',
+        'header_menu_magazine' => 'header_menu_magazine',
         'header_menu_technical_translations' => 'header_menu_technical_translations',
         'header_menu_Languages' => 'header_menu_Languages',
         'header_menu_areas' => 'header_menu_areas',

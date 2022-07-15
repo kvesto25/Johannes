@@ -133,23 +133,14 @@ $desc = $fields['description'];
                     </ul>
                 </li>
 			</ul>
-            <h4 class="service__title service__title--about">
-                <a href="<?=get_permalink(261);?>">Lanuages</a>
-            </h4>
             <ul class="service__list">
+                <h4 class="service__title service__title--about">
+                    <a href="<?=get_permalink(261);?>">Lanuages</a>
+                </h4>
                 <?php
                 $menu_items = get_menu_items('header_menu_Languages');
                 $i = 0;
                 foreach ($menu_items as $item) {
-                    if ($i > 5){
-                        ?>
-                        <li class="service__elem">
-                            <a href="<?=get_permalink(261);?>">All Languages</a>
-                        </li>
-                        <?php
-                        break;
-                    }
-                    $i++;
                     ?>
                     <li class="service__elem">
                         <a href="<?= $item->url ?>"><?= $item->title ?></a>

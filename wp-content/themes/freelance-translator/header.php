@@ -177,6 +177,23 @@ $assets_url = $template_url . '/assets';
                                                     ?>
                                                 </ul>
                                             </div>
+                                            <div class="service">
+                                                <h4 class="service__title service__title--about">
+                                                    <a href="<?=get_home_url().'/magazine/'?>">Magazine</a>
+                                                </h4>
+                                                <ul class="service__list">
+                                                    <?php
+                                                    $menu_items = get_menu_items('header_menu_magazine');
+                                                    foreach ($menu_items as $item) {
+                                                        ?>
+                                                        <li class="service__elem">
+                                                            <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                                                        </li>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                </ul>
+                                            </div>
                                             <div class="mega-menu__grup mega-menu__grup--right">
                                                 <a href="<?=get_home_url().'/contact/'?>" class="btn btn--large btn--blue">Contact us</a>
                                             </div>
