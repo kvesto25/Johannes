@@ -4,7 +4,7 @@ $assets_url = $template_url . '/assets';
 
 $id = get_the_ID();
 $fields = get_fields($id);
-//print_r($fields);
+print_r($fields);
 ?>
 <?php get_header(); ?>
 

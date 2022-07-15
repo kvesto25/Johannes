@@ -63,84 +63,131 @@ $desc = $fields['description'];
                         ?>
                     </ul>
 				</li>
-				<li class="service">
-					<h3 class="service__title">Certified Translations</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Birth Certificate</a></li>
-						<li class="service__elem"><a href="">Marriage Certificate</a></li>
-						<li class="service__elem"><a href="">School Diploma</a></li>
-						<li class="service__elem"><a href="">Contracts</a></li>
-						<li class="service__elem">
-							<a href="">Other Documents & Certificates</a>
-						</li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">About Us</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Our Story</a></li>
-						<li class="service__elem"><a href="">Our Vision & Values</a></li>
-						<li class="service__elem"><a href="">Our Success Stories</a></li>
-						<li class="service__elem"><a href="">Our Locations</a></li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">Magazine</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Featured Articles</a></li>
-						<li class="service__elem"><a href="">Featured Articles</a></li>
-						<li class="service__elem"><a href="">Featured Articles</a></li>
-						<li class="service__elem"><a href="">Featured Articles</a></li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">Specialisation</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Skilled Immigration</a></li>
-						<li class="service__elem"><a href="">Professional Recognition</a></li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">Digital</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Blogs</a></li>
-						<li class="service__elem"><a href="">SEO</a></li>
-						<li class="service__elem"><a href="">Websites</a></li>
-						<li class="service__elem"><a href="">E-Commerce</a></li>
-						<li class="service__elem"><a href="">Others</a></li>
-					</ul>
-				</li>
+                <li class="service">
+                    <h3 class="service__title service__title--cog">
+                        Technical Translations
+                    </h3>
+                    <ul class="service__list">
+                        <?php
+                        $menu_items = get_menu_items('header_menu_technical_translations');
+                        foreach ($menu_items as $item) {
+                            ?>
+                            <li class="service__elem">
+                                <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
+
+                <li class="service">
+                    <h3 class="service__title service__title--certified">
+                        Certified Translations
+                    </h3>
+                    <ul class="service__list">
+                        <?php
+                        $menu_items = get_menu_items('header_menu_certified');
+                        foreach ($menu_items as $item) {
+                            ?>
+                            <li class="service__elem">
+                                <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
+                <li class="service">
+                    <h3 class="service__title service__title--specialisation">
+                        Specialisation
+                    </h3>
+                    <ul class="service__list">
+                        <?php
+                        $menu_items = get_menu_items('header_menu_specialisation');
+                        foreach ($menu_items as $item) {
+                            ?>
+                            <li class="service__elem">
+                                <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
+                <li class="service">
+                    <h4 class="service__title service__title--about">
+                        <a href="<?=get_home_url().'/about-us/'?>">About Us</a>
+                    </h4>
+                    <ul class="service__list">
+                        <?php
+                        $menu_items = get_menu_items('header_menu_about_as');
+                        foreach ($menu_items as $item) {
+                            ?>
+                            <li class="service__elem">
+                                <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
 			</ul>
-			<ul class="services__list">
-				<li class="service">
-					<h3 class="service__title service__title--lang">Lanuages</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">English</a></li>
-						<li class="service__elem"><a href="">German</a></li>
-						<li class="service__elem"><a href="">French</a></li>
-						<li class="service__elem"><a href="">Italian</a></li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">European</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Spanish</a></li>
-						<li class="service__elem"><a href="">Tamil</a></li>
-						<li class="service__elem"><a href="">Arabic</a></li>
-						<li class="service__elem"><a href="">Ukrainian</a></li>
-						<li class="service__elem"><a href="">Hindi</a></li>
-					</ul>
-				</li>
-				<li class="service">
-					<h3 class="service__title">Asian</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Polish</a></li>
-						<li class="service__elem"><a href="">Portugese</a></li>
-						<li class="service__elem"><a href="">Chinese</a></li>
-						<li class="service__elem"><a href="">Russian</a></li>
-					</ul>
-				</li>
-			</ul>
+            <h4 class="service__title service__title--about">
+                <a href="<?=get_permalink(261);?>">Lanuages</a>
+            </h4>
+            <ul class="service__list">
+                <?php
+                $menu_items = get_menu_items('header_menu_Languages');
+                $i = 0;
+                foreach ($menu_items as $item) {
+                    if ($i > 5){
+                        ?>
+                        <li class="service__elem">
+                            <a href="<?=get_permalink(261);?>">All Languages</a>
+                        </li>
+                        <?php
+                        break;
+                    }
+                    $i++;
+                    ?>
+                    <li class="service__elem">
+                        <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
+<!--			<ul class="services__list">-->
+<!--				<li class="service">-->
+<!--					<h3 class="service__title service__title--lang">Lanuages</h3>-->
+<!--					<ul class="service__list">-->
+<!--						<li class="service__elem"><a href="">English</a></li>-->
+<!--						<li class="service__elem"><a href="">German</a></li>-->
+<!--						<li class="service__elem"><a href="">French</a></li>-->
+<!--						<li class="service__elem"><a href="">Italian</a></li>-->
+<!--					</ul>-->
+<!--				</li>-->
+<!--				<li class="service">-->
+<!--					<h3 class="service__title">European</h3>-->
+<!--					<ul class="service__list">-->
+<!--						<li class="service__elem"><a href="">Spanish</a></li>-->
+<!--						<li class="service__elem"><a href="">Tamil</a></li>-->
+<!--						<li class="service__elem"><a href="">Arabic</a></li>-->
+<!--						<li class="service__elem"><a href="">Ukrainian</a></li>-->
+<!--						<li class="service__elem"><a href="">Hindi</a></li>-->
+<!--					</ul>-->
+<!--				</li>-->
+<!--				<li class="service">-->
+<!--					<h3 class="service__title">Asian</h3>-->
+<!--					<ul class="service__list">-->
+<!--						<li class="service__elem"><a href="">Polish</a></li>-->
+<!--						<li class="service__elem"><a href="">Portugese</a></li>-->
+<!--						<li class="service__elem"><a href="">Chinese</a></li>-->
+<!--						<li class="service__elem"><a href="">Russian</a></li>-->
+<!--					</ul>-->
+<!--				</li>-->
+<!--			</ul>-->
 		</div>
 	</div>
 

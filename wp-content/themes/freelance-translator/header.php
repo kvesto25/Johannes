@@ -156,7 +156,7 @@ $assets_url = $template_url . '/assets';
                                 </div>
                             </li>
                             <li class="main-nav__elem">
-                                <a href="#" class="main-nav__link main-nav__link--collapce">About Us</a>
+                                <a href="<?=get_home_url().'/about-us/'?>" class="main-nav__link main-nav__link--collapce">About Us</a>
                                 <div class="mega-menu">
                                     <div class="container">
                                         <div class="mega-menu__wrapper">

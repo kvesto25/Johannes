@@ -64,7 +64,7 @@ $fields = get_fields('user_' . $userID);
                                 <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
                             </svg>
                         </a>
-                        <span><?=get_the_title();?></span>
+                        <span><?=$authordata->display_name;?></span>
                     </div>
                     <div class="sub-info__right-content">
                         <?=$fields['description'];?>
