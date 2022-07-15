@@ -47,15 +47,21 @@ $desc = $fields['description'];
 		<div class="container services__wrapper">
 			<ul class="services__list">
 				<li class="service">
-					<h3 class="service__title service__title--cog">Our All Disciplines</h3>
-					<ul class="service__list">
-						<li class="service__elem"><a href="">Document Translations</a></li>
-						<li class="service__elem"><a href="">Financial Translations</a></li>
-						<li class="service__elem"><a href="">Medical Translations</a></li>
-						<li class="service__elem"><a href="">Legal Translations</a></li>
-						<li class="service__elem"><a href="">Marketing Translations</a></li>
-						<li class="service__elem"><a href="">Urgent Translations</a></li>
-					</ul>
+                    <h4 class="service__title service__title--digital">
+                        Digital
+                    </h4>
+                    <ul class="service__list">
+                        <?php
+                        $menu_items = get_menu_items('header_menu_digital');
+                        foreach ($menu_items as $item) {
+                            ?>
+                            <li class="service__elem">
+                                <a href="<?= $item->url ?>"><?= $item->title ?></a>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
 				</li>
 				<li class="service">
 					<h3 class="service__title">Certified Translations</h3>

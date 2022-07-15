@@ -78,7 +78,7 @@ $assets_url = $template_url . '/assets';
                     <nav class="main-nav">
                         <ul class="main-nav__list">
                             <li class="main-nav__elem">
-                                <a href="#" class="main-nav__link main-nav__link--collapce" id="services">All Services</a>
+                                <a href="<?=get_home_url()?>/all-services/" class="main-nav__link main-nav__link--collapce" id="services">All Services</a>
                                 <div class="mega-menu">
                                     <div class="container">
                                         <div class="mega-menu__wrapper">

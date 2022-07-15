@@ -51,18 +51,20 @@ $fields = get_fields('user_' . $userID);
                     <p class="full-person__name"><?=$authordata->display_name;?></p>
                     <p class="full-person__position"><?=$fields['position'];?></p>
                 </div>
+
                 <div class="sub-info__right">
                     <div class="breadcrumbs">
-                    <span>Home
-                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
-                        </svg>
-                    </span>
-                        <span>Section 2
-                        <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
-                        </svg></span>
-                        <span>Section 3</span>
+                        <a href="<?=get_home_url();?>">Home
+                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
+                            </svg>
+                        </a>
+                        <a href="<?=get_home_url();?>/about-us/">Meet our team
+                            <svg width="6" height="9" viewBox="0 0 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1L4.5 4.5L1 8" stroke="black" stroke-linecap="round" />
+                            </svg>
+                        </a>
+                        <span><?=get_the_title();?></span>
                     </div>
                     <div class="sub-info__right-content">
                         <?=$fields['description'];?>
